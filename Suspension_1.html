@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Study Smart — Pharmaceutical Suspensions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F1F4F0;
+    --panel:#FFFFFF;
+    --ink:#17241E;
+    --ink-soft:#4C5C53;
+    --teal:#173C32;
+    --teal-2:#2C5C4C;
+    --amber:#B8722E;
+    --amber-2:#E0A458;
+    --amber-pale:#F6E3C7;
+    --sage:#7C9B7E;
+    --line:#D7DED6;
+    --line-strong:#B9C4BB;
+    --radius:6px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    margin:0 0 .4em 0;
+    letter-spacing:-0.01em;
+    color:var(--teal);
+  }
+  p{margin:0 0 .8em 0;}
+  button{font-family:inherit;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 20px;}
+
+  /* ---------- Header ---------- */
+  header.top{
+    background:var(--teal);
+    color:#F2F0E8;
+    padding:26px 0 0 0;
+    border-bottom:6px solid var(--amber);
+  }
+  header.top .header-inner{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:14px;
+    padding-bottom:18px;
+  }
+  header.top h1{
+    color:#F2F0E8;
+    font-size:clamp(28px,4vw,42px);
+    line-height:1.05;
+    margin:0;
+  }
+  header.top .tagline{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:var(--amber-2);
+    margin-top:6px;
+    letter-spacing:.02em;
+  }
+  header.top .course-tag{
+    font-size:13px;
+    color:#C9D6CD;
+    text-align:right;
+    max-width:260px;
+  }
+
+  /* ---------- Tab rail ---------- */
+  nav.tabs{
+    background:var(--teal);
+  }
+  nav.tabs .wrap{
+    display:flex;
+    gap:6px;
+    overflow-x:auto;
+    padding-top:2px;
+    scrollbar-width:thin;
+  }
+  nav.tabs button{
+    background:#0E2A22;
+    color:#B9C9BF;
+    border:none;
+    border-top-left-radius:8px;
+    border-top-right-radius:8px;
+    padding:12px 18px 11px 18px;
+    font-size:14.5px;
+    font-weight:500;
+    cursor:pointer;
+    white-space:nowrap;
+    position:relative;
+    top:2px;
+    transition:background .15s ease, color .15s ease;
+  }
+  nav.tabs button .num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--amber-2);
+    margin-right:8px;
+  }
+  nav.tabs button:hover{ color:#F2F0E8; }
+  nav.tabs button.active{
+    background:var(--bg);
+    color:var(--teal);
+  }
+  nav.tabs button.active .num{ color:var(--amber); }
+
+  /* ---------- Main panels ---------- */
+  main{padding:34px 0 70px 0;}
+  section.panel{display:none;}
+  section.panel.active{display:block;}
+  .panel-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+    border-bottom:2px solid var(--line-strong);
+    padding-bottom:14px;
+    margin-bottom:26px;
+  }
+  .panel-head h2{font-size:26px;}
+  .panel-head .hint{
+    font-size:13px;
+    color:var(--ink-soft);
+    font-family:'IBM Plex Mono', monospace;
+  }
+
+  /* ---------- Overview ---------- */
+  .law-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
+    gap:16px;
+  }
+  .law-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-left:4px solid var(--teal-2);
+    padding:16px 18px;
+    border-radius:2px;
+  }
+  .law-card h3{font-size:16.5px;color:var(--teal);margin-bottom:8px;}
+  .law-card ul{margin:0;padding-left:18px;}
+  .law-card li{margin-bottom:5px;font-size:14.5px;color:var(--ink);}
+  .eq{
+    font-family:'IBM Plex Mono', monospace;
+    background:var(--amber-pale);
+    border:1px solid var(--amber-2);
+    display:inline-block;
+    padding:6px 10px;
+    border-radius:4px;
+    font-size:14px;
+    margin:6px 0;
+  }
+  .law-card.eq-card{border-left-color:var(--amber);}
+
+  /* ---------- Diagrams ---------- */
+  .diagram-block{
+    background:var(--panel);
+    border:1px solid var(--line);
+    padding:22px;
+    margin-bottom:22px;
+    border-radius:2px;
+  }
+  .diagram-block h3{
+    font-size:18px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .diagram-block .sub{
+    font-size:13.5px;
+    color:var(--ink-soft);
+    margin-bottom:16px;
+  }
+  .ctrl-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:22px;
+    margin-bottom:14px;
+  }
+  .ctrl{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+    min-width:170px;
+  }
+  .ctrl label{
+    font-size:12.5px;
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--teal-2);
+  }
+  .ctrl input[type=range]{ accent-color:var(--amber); }
+  .ctrl .val{font-size:13px;color:var(--ink-soft);}
+  .diagram-flex{
+    display:flex;
+    gap:26px;
+    flex-wrap:wrap;
+    align-items:flex-start;
+  }
+  .readout{
+    background:var(--teal);
+    color:#F2F0E8;
+    padding:14px 18px;
+    border-radius:4px;
+    min-width:190px;
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .readout .big{
+    font-size:22px;
+    color:var(--amber-2);
+    margin-top:4px;
+  }
+  .toggle-row{display:flex;gap:8px;margin-bottom:16px;}
+  .toggle-btn{
+    background:#fff;
+    border:1px solid var(--line-strong);
+    padding:9px 16px;
+    border-radius:4px;
+    cursor:pointer;
+    font-size:14px;
+    font-weight:500;
+    color:var(--ink-soft);
+  }
+  .toggle-btn.on{
+    background:var(--teal);
+    color:#F2F0E8;
+    border-color:var(--teal);
+  }
+  .cylinders{display:flex;gap:34px;flex-wrap:wrap;}
+  .cyl-col{text-align:center;}
+  .cyl-col .stage-label{font-size:12px;color:var(--ink-soft);margin-top:6px;font-family:'IBM Plex Mono', monospace;}
+  table.compare{
+    width:100%;
+    border-collapse:collapse;
+    font-size:14px;
+    margin-top:6px;
+  }
+  table.compare th, table.compare td{
+    border:1px solid var(--line);
+    padding:9px 12px;
+    text-align:left;
+    vertical-align:top;
+  }
+  table.compare th{
+    background:var(--teal);
+    color:#F2F0E8;
+    font-weight:600;
+    font-size:13px;
+  }
+  table.compare tr:nth-child(even) td{background:#F7F9F6;}
+
+  /* ---------- Mini map ---------- */
+  .map-layout{
+    display:grid;
+    grid-template-columns:280px 1fr;
+    gap:20px;
+  }
+  @media (max-width:720px){ .map-layout{grid-template-columns:1fr;} }
+  .map-list{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+  .map-list button{
+    text-align:left;
+    background:#fff;
+    border:1px solid var(--line);
+    border-left:3px solid transparent;
+    padding:11px 14px;
+    border-radius:2px;
+    cursor:pointer;
+    font-size:14px;
+    color:var(--ink);
+  }
+  .map-list button:hover{border-left-color:var(--amber-2);}
+  .map-list button.active{
+    border-left-color:var(--amber);
+    background:var(--amber-pale);
+    font-weight:600;
+    color:var(--teal);
+  }
+  .map-display{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-top:4px solid var(--teal);
+    padding:22px 24px;
+    min-height:260px;
+    border-radius:2px;
+  }
+  .map-display h3{font-size:19px;margin-bottom:10px;}
+  .map-display p{font-size:15px;color:var(--ink);}
+  .map-display .placeholder{color:var(--ink-soft);font-style:italic;font-size:14px;}
+
+  /* ---------- Flashcards ---------- */
+  .fc-toolbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:16px;
+  }
+  .fc-count{font-family:'IBM Plex Mono', monospace;font-size:13px;color:var(--ink-soft);}
+  .fc-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(230px,1fr));
+    gap:14px;
+  }
+  .fc-card{
+    perspective:1000px;
+    height:200px;
+    cursor:pointer;
+    overflow:visible;
+  }
+  .fc-inner{
+    position:relative;
+    width:100%;height:100%;
+    transition:transform .5s;
+    transform-style:preserve-3d;
+  }
+  .fc-card.flipped .fc-inner{transform:rotateY(180deg);}
+  .fc-face{
+    position:absolute;inset:0;
+    backface-visibility:hidden;
+    border-radius:4px;
+    padding:26px 15px 14px 15px;
+    display:block;
+    font-size:13.5px;
+    line-height:1.45;
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+    border:1px solid var(--line);
+    box-sizing:border-box;
+  }
+  .fc-front{background:#fff;color:var(--ink);}
+  .fc-front .tagno{
+    position:absolute;top:8px;right:10px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;color:var(--sage);
+  }
+  .fc-back{
+    background:var(--teal);
+    color:#F2F0E8;
+    transform:rotateY(180deg);
+  }
+  .fc-back strong{color:var(--amber-2);}
+
+  /* ---------- Quiz ---------- */
+  .quiz-toolbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .score-box{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    background:var(--teal);
+    color:#F2F0E8;
+    padding:8px 14px;
+    border-radius:4px;
+  }
+  .quiz-item{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:2px;
+    padding:16px 18px;
+    margin-bottom:12px;
+  }
+  .quiz-item .qtext{
+    font-size:15px;
+    font-weight:500;
+    margin-bottom:10px;
+  }
+  .quiz-item .qnum{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--sage);
+    margin-right:6px;
+  }
+  .opt-btn{
+    display:block;
+    width:100%;
+    text-align:left;
+    background:#fff;
+    border:1px solid var(--line-strong);
+    padding:9px 12px;
+    border-radius:3px;
+    margin-bottom:7px;
+    cursor:pointer;
+    font-size:14px;
+    color:var(--ink);
+  }
+  .opt-btn:hover{border-color:var(--teal-2);}
+  .opt-btn.correct{background:#DDEFE1;border-color:#4E8C63;color:#1F4B2C;}
+  .opt-btn.wrong{background:#F6DEDA;border-color:#B85B4A;color:#6B2A20;}
+  .opt-btn[disabled]{cursor:default;}
+  .btn-primary{
+    background:var(--amber);
+    color:#2A1B0B;
+    border:none;
+    padding:10px 20px;
+    border-radius:4px;
+    font-weight:600;
+    cursor:pointer;
+    font-size:14px;
+  }
+  .btn-primary:hover{background:var(--amber-2);}
+
+  /* ---------- Difficulty level tabs (Flash Cards / Quiz Bank) ---------- */
+  .level-tabs{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:16px;
+  }
+  .level-tabs button{
+    background:#fff;
+    border:1px solid var(--line-strong);
+    color:var(--ink-soft);
+    padding:9px 16px;
+    border-radius:20px;
+    font-size:13.5px;
+    font-weight:600;
+    cursor:pointer;
+    font-family:'IBM Plex Sans', sans-serif;
+    transition:background .15s ease, color .15s ease, border-color .15s ease;
+  }
+  .level-tabs button .lvl-count{
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:500;
+    font-size:11.5px;
+    opacity:.75;
+    margin-left:5px;
+  }
+  .level-tabs button:hover{border-color:var(--teal-2);color:var(--teal);}
+  .level-tabs button.active{
+    background:var(--teal);
+    border-color:var(--teal);
+    color:#F2F0E8;
+  }
+  .level-tabs button.active .lvl-count{color:var(--amber-2);opacity:1;}
+
+  footer{
+    background:var(--teal);
+    color:#B9C9BF;
+    text-align:center;
+    padding:20px 10px;
+    font-size:12.5px;
+    font-family:'IBM Plex Mono', monospace;
+  }
+  footer span{color:var(--amber-2);}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap header-inner">
+    <div>
+      <h1>Study Smart</h1>
+      <div class="tagline">Pharmaceutical Suspensions — condensed for revision</div>
+    </div>
+    <div class="course-tag">Pharmaceutical Technology · 3rd stage, 1st semester</div>
+  </div>
+</header>
+
+<nav class="tabs">
+  <div class="wrap">
+    <button class="tab-btn active" data-panel="overview"><span class="num">01</span>Overview</button>
+    <button class="tab-btn" data-panel="diagrams"><span class="num">02</span>Interactive Diagrams</button>
+    <button class="tab-btn" data-panel="minimap"><span class="num">03</span>Mini Map</button>
+    <button class="tab-btn" data-panel="flashcards"><span class="num">04</span>Flash Cards</button>
+    <button class="tab-btn" data-panel="quiz"><span class="num">05</span>Quiz Bank</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- ===================== 1. OVERVIEW ===================== -->
+  <section class="panel active" id="overview">
+    <div class="panel-head">
+      <h2>Overview</h2>
+      <span class="hint">key definitions & laws only</span>
+    </div>
+    <div class="law-grid">
+      <div class="law-card">
+        <h3>Definition</h3>
+        <ul>
+          <li>A suspension = finely divided drug particles (the <em>suspensoid</em>) distributed through a vehicle in which the drug has minimum solubility.</li>
+          <li>Supplied ready-to-use, or as a dry powder reconstituted before use (for drugs unstable in solution).</li>
+        </ul>
+      </div>
+      <div class="law-card">
+        <h3>Why suspensions are used</h3>
+        <ul>
+          <li>Drug is chemically unstable in solution but stable when suspended.</li>
+          <li>Liquid dosage form is easier to swallow and dose is flexible.</li>
+          <li>Masks disagreeable taste (e.g. erythromycin estolate — a less soluble ester used for a palatable liquid form).</li>
+        </ul>
+      </div>
+      <div class="law-card">
+        <h3>Desired features of a good suspension</h3>
+        <ul>
+          <li>Therapeutic efficacy, chemical stability, permanency, aesthetic appeal.</li>
+          <li>Settles slowly; redisperses readily on gentle shaking.</li>
+          <li>Particle size stays fairly constant on standing.</li>
+          <li>Pours readily and evenly.</li>
+        </ul>
+      </div>
+      <div class="law-card eq-card">
+        <h3>Stokes' sedimentation equation</h3>
+        <div class="eq">V = d²g(ρₛ − ρf) / 18η</div>
+        <ul>
+          <li>V = sedimentation velocity, d = particle diameter, g = gravity.</li>
+          <li>ρₛ, ρf = density of particle & medium; η = viscosity of medium.</li>
+          <li>Sedimentation is significant for particle radii ≥ ~0.5 µm.</li>
+          <li>↓ particle size by 10× → ↓ settling rate by 100× (d is squared).</li>
+        </ul>
+      </div>
+      <div class="law-card">
+        <h3>Particle size reduction methods</h3>
+        <ul>
+          <li><strong>Micropulverization</strong> — fast, cheap, ~10–50 µm; for most oral/topical suspensions.</li>
+          <li><strong>Fluid energy grinding / jet milling</strong> — under 10 µm; used for parenteral or ophthalmic suspensions.</li>
+          <li><strong>Spray drying</strong> — for extremely small particle dimensions.</li>
+          <li>Ideal particle diameter in most good suspensions: <strong>1–50 µm</strong>.</li>
+        </ul>
+      </div>
+      <div class="law-card">
+        <h3>Caking & particle shape</h3>
+        <ul>
+          <li>Over-reducing particle size favors compact "cake" formation that resists redispersion.</li>
+          <li>Symmetrical barrel-shaped particles (e.g. calcium carbonate) → more stable, no caking.</li>
+          <li>Asymmetrical needle-shaped particles → tenacious sediment cake that cannot be redispersed.</li>
+        </ul>
+      </div>
+      <div class="law-card">
+        <h3>Flocculation</h3>
+        <ul>
+          <li>A floc/floccule = a loose aggregate of particles held by weak bonds — prevents rigid caking.</li>
+          <li>Flocs settle faster than fine individual particles but form a bulkier, redispersible sediment.</li>
+        </ul>
+      </div>
+      <div class="law-card eq-card">
+        <h3>Sedimentation volume ratio</h3>
+        <div class="eq">F = Vf / Vo</div>
+        <ul>
+          <li>Vo = initial suspension volume; Vf = final sediment volume.</li>
+          <li>F ranges 0–1.</li>
+          <li>Flocculated system: F up to <strong>0.6</strong>.</li>
+          <li>Deflocculated system: F as low as <strong>0.1</strong>.</li>
+        </ul>
+      </div>
+      <div class="law-card">
+        <h3>Flocculated vs deflocculated</h3>
+        <ul>
+          <li><strong>Flocculated:</strong> settles fast (minutes–hours), loose/fluffy sediment, clear supernatant, easily redispersed.</li>
+          <li><strong>Deflocculated:</strong> settles slowly (days–weeks), dense "caked" sediment, hard to redisperse.</li>
+        </ul>
+      </div>
+      <div class="law-card">
+        <h3>Flocculating agents</h3>
+        <ul>
+          <li>Clays — diluted <strong>bentonite magma</strong> (oral suspensions); also supports the floc structure.</li>
+          <li>pH alteration toward minimum drug solubility (parenteral suspensions).</li>
+          <li>Electrolytes — reduce the electrical barrier between particles, bridging them.</li>
+          <li>Nonionic / ionic surfactants at controlled concentration.</li>
+        </ul>
+      </div>
+      <div class="law-card">
+        <h3>Suspending / thickening agents</h3>
+        <ul>
+          <li>Added to lend structure to the dispersion medium when settling is too rapid.</li>
+          <li>Examples: carboxymethylcellulose (CMC), methylcellulose, microcrystalline cellulose, polyvinyl pyrrolidone, xanthan gum, bentonite.</li>
+        </ul>
+      </div>
+      <div class="law-card">
+        <h3>Thixotropy</h3>
+        <ul>
+          <li>A highly flocculated preparation is semi-solid at rest but becomes fluid when shaken, and rebuilds structure on standing.</li>
+          <li>Ideal: fluid long enough to dose easily, then regains viscosity quickly.</li>
+        </ul>
+      </div>
+      <div class="law-card">
+        <h3>Best sedimentation pattern — the trade-off</h3>
+        <ul>
+          <li>Two factors: <strong>speed of sedimentation</strong> and <strong>reversibility</strong>.</li>
+          <li>Deflocculated = slow settling but poor reversibility risk (irreversible coagulation if too viscous / over heated).</li>
+          <li>Flocculated = controlled slow settling with easy redispersion — usually the practical balance.</li>
+        </ul>
+      </div>
+      <div class="law-card">
+        <h3>Preparation — wetting</h3>
+        <ul>
+          <li>Poorly wetted powders clump or float; must be wetted before dispersion.</li>
+          <li>Wetting agents: alcohol, glycerin, propylene glycol — displace air in crevices, aid penetration of the dispersion medium.</li>
+          <li>Large scale: colloid mill. Small scale: mortar and pestle.</li>
+        </ul>
+      </div>
+      <div class="law-card">
+        <h3>Preparation — assembly & preservation</h3>
+        <ul>
+          <li>Dispersion medium (with soluble colorants, flavorants, preservatives already added) is blended into the wetted powder in portions.</li>
+          <li>Remaining vehicle rinses equipment and brings suspension to final volume.</li>
+          <li>Preservatives against bacteria/mold: <strong>methylparaben</strong>, <strong>propylparaben</strong>.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 2. INTERACTIVE DIAGRAMS ===================== -->
+  <section class="panel" id="diagrams">
+    <div class="panel-head">
+      <h2>Interactive Diagrams</h2>
+      <span class="hint">drag, click, toggle</span>
+    </div>
+
+    <div class="diagram-block">
+      <h3>Stokes' Law simulator</h3>
+      <div class="sub">V = d²g(ρₛ − ρf) / 18η — move the sliders and watch the relative settling speed change.</div>
+      <div class="ctrl-row">
+        <div class="ctrl">
+          <label>Particle diameter (d)</label>
+          <input type="range" id="stk-d" min="1" max="100" value="20">
+          <span class="val" id="stk-d-val">20 µm</span>
+        </div>
+        <div class="ctrl">
+          <label>Particle density (ρₛ)</label>
+          <input type="range" id="stk-rs" min="10" max="30" value="19">
+          <span class="val" id="stk-rs-val">1.9 g/mL</span>
+        </div>
+        <div class="ctrl">
+          <label>Medium viscosity (η)</label>
+          <input type="range" id="stk-eta" min="1" max="50" value="10">
+          <span class="val" id="stk-eta-val">10 cP</span>
+        </div>
+      </div>
+      <div class="diagram-flex">
+        <div class="readout">
+          relative velocity
+          <div class="big" id="stk-v">—</div>
+        </div>
+        <svg id="stk-tube" width="120" height="200" viewBox="0 0 120 200">
+          <rect x="10" y="5" width="100" height="190" fill="#fff" stroke="#B9C4BB" stroke-width="2" rx="6"/>
+          <circle id="stk-particle" cx="60" cy="20" r="6" fill="#B8722E"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="diagram-block">
+      <h3>Sedimentation volume ratio</h3>
+      <div class="sub">F = Vf / Vo — set the initial and final sediment volumes to see F and the cylinder fill.</div>
+      <div class="ctrl-row">
+        <div class="ctrl">
+          <label>Initial volume, Vo (mL)</label>
+          <input type="range" id="sv-vo" min="50" max="100" value="100">
+          <span class="val" id="sv-vo-val">100 mL</span>
+        </div>
+        <div class="ctrl">
+          <label>Final sediment volume, Vf (mL)</label>
+          <input type="range" id="sv-vf" min="1" max="100" value="30">
+          <span class="val" id="sv-vf-val">30 mL</span>
+        </div>
+      </div>
+      <div class="diagram-flex">
+        <div class="readout">
+          F value
+          <div class="big" id="sv-f">0.30</div>
+        </div>
+        <svg width="90" height="200" viewBox="0 0 90 200">
+          <rect x="10" y="5" width="70" height="190" fill="#fff" stroke="#B9C4BB" stroke-width="2"/>
+          <rect id="sv-fill" x="10" y="150" width="70" height="45" fill="#8AA98B"/>
+          <line x1="5" y1="195" x2="85" y2="195" stroke="#173C32" stroke-width="3"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="diagram-block">
+      <h3>Flocculated vs deflocculated settling</h3>
+      <div class="sub">Toggle the system type to compare the three settling stages side by side.</div>
+      <div class="toggle-row">
+        <button class="toggle-btn on" id="btn-floc" data-mode="floc">Flocculated</button>
+        <button class="toggle-btn" id="btn-defloc" data-mode="defloc">Deflocculated</button>
+      </div>
+      <div class="cylinders" id="cyl-container"></div>
+    </div>
+
+    <div class="diagram-block">
+      <h3>Particle size vs settling rate</h3>
+      <div class="sub">Because d is squared in Stokes' law, a 10× smaller particle settles about 100× slower. Drag to see the effect.</div>
+      <div class="ctrl-row">
+        <div class="ctrl">
+          <label>Relative particle diameter</label>
+          <input type="range" id="ps-d" min="1" max="10" value="10">
+          <span class="val" id="ps-d-val">10 units</span>
+        </div>
+      </div>
+      <svg id="ps-chart" width="100%" height="150" viewBox="0 0 300 150" preserveAspectRatio="xMinYMax meet">
+        <line x1="30" y1="130" x2="290" y2="130" stroke="#B9C4BB"/>
+        <line x1="30" y1="10" x2="30" y2="130" stroke="#B9C4BB"/>
+        <rect id="ps-bar" x="60" y="10" width="60" height="120" fill="#B8722E"/>
+        <text x="90" y="145" font-size="10" text-anchor="middle" fill="#4C5C53">settling rate</text>
+      </svg>
+    </div>
+
+    <div class="diagram-block">
+      <h3>System comparison table</h3>
+      <table class="compare">
+        <tr><th>Property</th><th>Flocculated</th><th>Deflocculated</th></tr>
+        <tr><td>Settling speed</td><td>Fast (minutes–hours)</td><td>Slow (days–weeks)</td></tr>
+        <tr><td>Supernatant</td><td>Clear, appears quickly</td><td>Little/none at first, increases later</td></tr>
+        <tr><td>Sediment texture</td><td>Loose, fluffy</td><td>Dense, "caked"</td></tr>
+        <tr><td>Redispersion</td><td>Easy, with mild shaking</td><td>Difficult, may be irreversible</td></tr>
+        <tr><td>Sedimentation ratio F</td><td>Up to 0.6</td><td>As low as 0.1</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===================== 3. MINI MAP ===================== -->
+  <section class="panel" id="minimap">
+    <div class="panel-head">
+      <h2>Mini Map</h2>
+      <span class="hint">tap a title to read it</span>
+    </div>
+    <div class="map-layout">
+      <div class="map-list" id="map-list"></div>
+      <div class="map-display" id="map-display">
+        <p class="placeholder">Select a topic on the left to display it here.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 4. FLASH CARDS ===================== -->
+  <section class="panel" id="flashcards">
+    <div class="panel-head">
+      <h2>Flash Cards</h2>
+      <span class="hint">tap a card to flip it</span>
+    </div>
+    <div class="level-tabs" id="fc-level-tabs">
+      <button class="fc-level-btn active" data-level="easy">Level 1 · Easy<span class="lvl-count">60</span></button>
+      <button class="fc-level-btn" data-level="medium">Level 2 · Medium<span class="lvl-count">50</span></button>
+      <button class="fc-level-btn" data-level="hard">Level 3 · Hard<span class="lvl-count">40</span></button>
+    </div>
+    <div class="fc-toolbar">
+      <span class="fc-count" id="fc-count"></span>
+      <button class="btn-primary" id="fc-reset">Flip all back</button>
+    </div>
+    <div class="fc-grid" id="fc-grid"></div>
+  </section>
+
+  <!-- ===================== 5. QUIZ BANK ===================== -->
+  <section class="panel" id="quiz">
+    <div class="panel-head">
+      <h2>Quiz Bank</h2>
+      <span class="hint">choices are shuffled each time</span>
+    </div>
+    <div class="level-tabs" id="quiz-level-tabs">
+      <button class="quiz-level-btn active" data-level="easy">Level 1 · Easy<span class="lvl-count">60</span></button>
+      <button class="quiz-level-btn" data-level="medium">Level 2 · Medium<span class="lvl-count">50</span></button>
+      <button class="quiz-level-btn" data-level="hard">Level 3 · Hard<span class="lvl-count">40</span></button>
+    </div>
+    <div class="quiz-toolbar">
+      <div class="score-box" id="quiz-score">Score: 0 / 0</div>
+      <button class="btn-primary" id="quiz-reset">Reshuffle & restart</button>
+    </div>
+    <div id="quiz-list"></div>
+  </section>
+
+</main>
+
+<footer>
+  Study Smart — Pharmaceutical Suspensions &nbsp;·&nbsp; <span>© Anmar Taha</span>
+</footer>
+
+<script>
+/* ===================== TAB SWITCHING ===================== */
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.panel).classList.add('active');
+  });
+});
+
+/* ===================== DIAGRAM 1: STOKES' LAW ===================== */
+const stkD = document.getElementById('stk-d');
+const stkRs = document.getElementById('stk-rs');
+const stkEta = document.getElementById('stk-eta');
+const stkParticle = document.getElementById('stk-particle');
+let stkAnimId = null;
+
+function computeStokes(){
+  const d = parseFloat(stkD.value);       // 1-100 (µm, relative)
+  const rs = parseFloat(stkRs.value)/10;  // g/mL
+  const eta = parseFloat(stkEta.value);   // cP relative
+  const rf = 1.0;
+  document.getElementById('stk-d-val').textContent = d + ' µm';
+  document.getElementById('stk-rs-val').textContent = rs.toFixed(1) + ' g/mL';
+  document.getElementById('stk-eta-val').textContent = eta + ' cP';
+  // relative velocity, arbitrary scale for visualization
+  const v = (d*d) * (rs - rf) / (18*eta);
+  const vClamped = Math.max(v, 0.01);
+  document.getElementById('stk-v').textContent = vClamped.toFixed(2) + ' (rel.)';
+  animateParticle(vClamped);
+}
+
+function animateParticle(v){
+  if(stkAnimId) cancelAnimationFrame(stkAnimId);
+  const duration = Math.max(600, 6000 / v); // faster v -> shorter duration
+  const startY = 20;
+  const endY = 180;
+  const startTime = performance.now();
+  function step(now){
+    const t = Math.min(1, (now-startTime)/duration);
+    const y = startY + (endY-startY)*t;
+    stkParticle.setAttribute('cy', y);
+    if(t < 1){
+      stkAnimId = requestAnimationFrame(step);
+    } else {
+      setTimeout(()=>{ stkParticle.setAttribute('cy', startY); animateParticle(v); }, 400);
+    }
+  }
+  stkAnimId = requestAnimationFrame(step);
+}
+
+[stkD, stkRs, stkEta].forEach(el=>el.addEventListener('input', computeStokes));
+computeStokes();
+
+/* ===================== DIAGRAM 2: SEDIMENTATION VOLUME RATIO ===================== */
+const svVo = document.getElementById('sv-vo');
+const svVf = document.getElementById('sv-vf');
+const svFill = document.getElementById('sv-fill');
+
+function computeSV(){
+  const vo = parseFloat(svVo.value);
+  let vf = parseFloat(svVf.value);
+  if(vf > vo) { vf = vo; svVf.value = vo; }
+  document.getElementById('sv-vo-val').textContent = vo + ' mL';
+  document.getElementById('sv-vf-val').textContent = vf + ' mL';
+  const f = vf/vo;
+  document.getElementById('sv-f').textContent = f.toFixed(2);
+  const maxHeight = 190;
+  const h = maxHeight * f;
+  svFill.setAttribute('height', h);
+  svFill.setAttribute('y', 5 + (maxHeight - h));
+}
+[svVo, svVf].forEach(el=>el.addEventListener('input', computeSV));
+computeSV();
+
+/* ===================== DIAGRAM 3: FLOC vs DEFLOC CYLINDERS ===================== */
+const cylData = {
+  floc: [
+    {label:'Initial', fill:0.98, top:'#CFE0D2'},
+    {label:'Intermediate', fill:0.55, top:'#CFE0D2', sedTop:0.55},
+    {label:'Final', fill:0.42, top:'#F5F7F1', sedTop:0.42}
+  ],
+  defloc: [
+    {label:'Initial', fill:0.98, top:'#CFE0D2'},
+    {label:'Intermediate', fill:0.92, top:'#CFE0D2', sedTop:0.92},
+    {label:'Final', fill:0.85, top:'#F5F7F1', sedTop:0.85}
+  ]
+};
+function renderCylinders(mode){
+  const container = document.getElementById('cyl-container');
+  container.innerHTML = '';
+  cylData[mode].forEach(stage=>{
+    const wrap = document.createElement('div');
+    wrap.className = 'cyl-col';
+    const sedHeight = 190*(1-(stage.sedTop!==undefined?stage.sedTop:0.02));
+    const svg = `
+      <svg width="70" height="200" viewBox="0 0 70 200">
+        <rect x="8" y="5" width="54" height="190" fill="${stage.top}" stroke="#B9C4BB" stroke-width="2"/>
+        ${stage.sedTop!==undefined ? `<rect x="8" y="${5+190-sedHeight}" width="54" height="${sedHeight}" fill="${mode==='floc'?'#8AA98B':'#5B7A63'}"/>` : ''}
+      </svg>`;
+    wrap.innerHTML = svg + `<div class="stage-label">${stage.label}</div>`;
+    container.appendChild(wrap);
+  });
+}
+document.getElementById('btn-floc').addEventListener('click', ()=>{
+  document.getElementById('btn-floc').classList.add('on');
+  document.getElementById('btn-defloc').classList.remove('on');
+  renderCylinders('floc');
+});
+document.getElementById('btn-defloc').addEventListener('click', ()=>{
+  document.getElementById('btn-defloc').classList.add('on');
+  document.getElementById('btn-floc').classList.remove('on');
+  renderCylinders('defloc');
+});
+renderCylinders('floc');
+
+/* ===================== DIAGRAM 4: PARTICLE SIZE vs SETTLING RATE ===================== */
+const psD = document.getElementById('ps-d');
+const psBar = document.getElementById('ps-bar');
+function computePS(){
+  const d = parseFloat(psD.value);
+  document.getElementById('ps-d-val').textContent = d + ' units';
+  const rate = d*d; // proportional to d^2
+  const maxRate = 100;
+  const maxHeight = 120;
+  const h = Math.max(4, (rate/maxRate)*maxHeight);
+  psBar.setAttribute('height', h);
+  psBar.setAttribute('y', 130-h);
+}
+psD.addEventListener('input', computePS);
+computePS();
+
+/* ===================== MINI MAP ===================== */
+const mapTopics = [
+  {t:'Definition of a suspension', d:'A suspension contains finely divided drug particles (the suspensoid) distributed somewhat uniformly through a vehicle in which the drug has minimum solubility. Available ready-to-use, or as a dry powder for reconstitution.'},
+  {t:'Reasons for preparing suspensions', d:'Certain drugs are unstable in solution but stable when suspended; liquids are easier to swallow with flexible dosing; undissolved particles hide a disagreeable taste (e.g. Erythromycin Estolate Oral Suspension).'},
+  {t:'Desired features of a suspension', d:'Therapeutic efficacy, chemical stability, permanency, and aesthetic appeal; slow settling with easy redispersion on gentle shaking; fairly constant particle size on standing; pours readily and evenly.'},
+  {t:'Sedimentation & Stokes\' law', d:'Sedimentation is the downward movement of particles under gravity, significant for particle radii above about 0.5 µm. V = d²g(ρₛ − ρf)/18η. A 10× decrease in particle size gives a 100× decrease in settling rate, because d is squared.'},
+  {t:'Particle size reduction methods', d:'Micropulverization (fast, cheap, ~10–50 µm, most oral/topical suspensions); fluid energy grinding / jet milling (finer than 10 µm, parenteral or ophthalmic use); spray drying (extremely small particles). Ideal range overall: 1–50 µm.'},
+  {t:'Caking & particle shape', d:'Reducing particle size too far encourages a compact cake that resists breakup on shaking. Symmetrical barrel-shaped particles (e.g. calcium carbonate) resist caking; asymmetrical needle-shaped particles form a tenacious cake.'},
+  {t:'Flocs and floccules', d:'To avoid rigid caking, particles are intentionally aggregated into loose flocs held by weak particle-to-particle bonds. Flocs settle faster than fine individual particles but form a bulky sediment that redisperses easily with light agitation.'},
+  {t:'Sedimentation volume ratio (F)', d:'F = Vf/Vo, where Vo is the initial suspension volume and Vf is the final sediment volume, measured in a graduated cylinder. F ranges from 0 to 1.'},
+  {t:'Flocculated system behaviour', d:'Particles form loose, porous aggregates that sediment within minutes, leaving a clear supernatant; maximum sedimentation is reached within hours to days. Sediment is loose and fluffy, redisperses easily by shaking. F can be up to 0.6.'},
+  {t:'Deflocculated system behaviour', d:'Particles behave independently and settle slowly, over days to weeks. Little supernatant appears at first. The sediment becomes dense and "caked" and is difficult, sometimes impossible, to redisperse. F can be as low as 0.1.'},
+  {t:'Flocculating agents', d:'Diluted bentonite magma (clays) for oral suspensions; pH adjustment toward minimum drug solubility for parenteral suspensions; electrolytes, which reduce the electrical barrier between particles and bridge them; nonionic/ionic surfactants at controlled concentration.'},
+  {t:'Problem with over-flocculation', d:'Highly flocculated suspensions settle too rapidly to look pharmaceutically elegant; rapid settling hinders accurate dosage measurement and leaves an unsightly supernatant layer.'},
+  {t:'Suspending / thickening agents', d:'Added to the dispersion medium to lend it structure and slow settling: carboxymethylcellulose (CMC), methylcellulose, microcrystalline cellulose, polyvinyl pyrrolidone, xanthan gum, and bentonite.'},
+  {t:'Thixotropy', d:'A property of highly flocculated preparations: semi-solid at rest, becomes fluid when shaken, and slowly rebuilds its structure on standing. An ideal thixotropic suspension stays fluid long enough to dose accurately, then regains viscosity quickly.'},
+  {t:'Choosing a sedimentation pattern', d:'Two competing factors: speed of sedimentation and reversibility. Deflocculated systems settle slowly but risk irreversible coagulation if too viscous or heat-stressed. Flocculated systems settle in a controlled, slow way and redisperse easily — often the practical compromise.'},
+  {t:'Wetting the powder', d:'Drugs not readily penetrated by the vehicle clump or float; they must be wetted first. Alcohol, glycerin, and propylene glycol are common wetting agents for aqueous vehicles, displacing air from crevices and aiding penetration.'},
+  {t:'Manufacturing process', d:'Large scale: wetting agents mixed with particles using a colloid mill. Small scale: mortar and pestle. The dispersion medium (already carrying soluble colorants, flavorants, preservatives) is blended into the wetted powder in portions, then the remaining vehicle rinses the equipment and brings the suspension to final volume.'},
+  {t:'Preservatives', d:'Suitable preservatives protect against bacterial and mold contamination — commonly methylparaben and propylparaben.'},
+  {t:'Example formula — Aluminum Hydroxide Oral Suspension', d:'Aluminum hydroxide compressed gel 326.8 g; Sorbitol solution 282.0 mL; Syrup 93.0 mL; Glycerin 25.0 mL; Methylparaben 0.9 g; Propylparaben 0.3 g; Flavor qs; Purified water to make 1,000.0 mL. Syrup and sorbitol solution provide viscosity and sweetness.'}
+];
+const mapList = document.getElementById('map-list');
+const mapDisplay = document.getElementById('map-display');
+mapTopics.forEach((topic, i)=>{
+  const btn = document.createElement('button');
+  btn.textContent = topic.t;
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('#map-list button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    mapDisplay.innerHTML = `<h3>${topic.t}</h3><p>${topic.d}</p>`;
+  });
+  mapList.appendChild(btn);
+});
+
+/* ===================== FLASH CARDS (3 difficulty levels) ===================== */
+const flashcardsEasy = [
+  {q:'Define a pharmaceutical suspension.', a:'A preparation containing finely divided drug particles (the suspensoid) distributed somewhat uniformly throughout a vehicle in which the drug exhibits a minimum degree of solubility.'},
+  {q:'What is the suspensoid?', a:'The finely divided drug particles distributed throughout the suspension vehicle.'},
+  {q:'In what two general forms can suspensions be supplied?', a:'Ready-to-use liquid form (with or without stabilizers/additives), or as a dry powder intended for suspension in a liquid vehicle before use.'},
+  {q:'Name a commercial ready-to-use suspension mentioned in the source.', a:'Carafate (sucralfate) Suspension, 1 g/10 mL.'},
+  {q:'Name a commercial suspension supplied as a dry powder for reconstitution.', a:'Amoxicillin for Oral Suspension, USP, 250 mg/5 mL.'},
+  {q:'What liquid is used to reconstitute a dry-powder antibiotic oral suspension?', a:'Purified water, added in the specified amount.'},
+  {q:'State the first reason given for preparing suspensions.', a:'Certain drugs are chemically unstable in solution but stable when suspended.'},
+  {q:'State the second reason given for preparing suspensions.', a:'Liquid dosage forms are preferred by many patients for ease of swallowing and flexibility of dosing.'},
+  {q:'State the third reason given for preparing suspensions.', a:'The disagreeable taste of certain drugs in solution is overcome by administering them as undissolved particles.'},
+  {q:'Which ester of erythromycin is used as the taste-masking example in the text?', a:'Erythromycin estolate.'},
+  {q:'What is the official USP name of the resulting erythromycin product?', a:'Erythromycin Estolate Oral Suspension, USP.'},
+  {q:'List the four features desired in a pharmaceutical suspension.', a:'Therapeutic efficacy/chemical stability/permanency/aesthetic appeal; slow settling with easy redispersion; constant particle size on standing; pours readily and evenly.'},
+  {q:'Define sedimentation.', a:'The downward movement of particles under gravity.'},
+  {q:'Above what particle radius is sedimentation typically observed?', a:'Approximately 0.5 µm or greater.'},
+  {q:'Write Stokes\' sedimentation equation.', a:'V = d²g(ρs − ρf) / 18η'},
+  {q:'What does V represent in Stokes\' equation?', a:'The sedimentation velocity.'},
+  {q:'What does d represent in Stokes\' equation?', a:'The particle diameter (particle assumed spherical).'},
+  {q:'What does g represent in Stokes\' equation?', a:'The acceleration due to gravity.'},
+  {q:'What do ρs and ρf represent in Stokes\' equation?', a:'ρs = density of the particles; ρf = density of the medium.'},
+  {q:'What does η represent in Stokes\' equation?', a:'The viscosity of the medium.'},
+  {q:'Name the factors that can be adjusted to enhance the physical stability of a suspension.', a:'Diameter of the particles, and the density and viscosity of the medium.'},
+  {q:'What happens to settling rate if particle size decreases by a factor of 10?', a:'The settling rate is reduced by a factor of 100.'},
+  {q:'What happens to settling rate if particle density increases and vehicle density stays the same?', a:'The rate of descent (sedimentation) increases.'},
+  {q:'Name the three methods of reducing particle size described in the text.', a:'Micropulverization, fluid energy grinding (jet milling), and spray drying.'},
+  {q:'What particle size range does micropulverization typically produce?', a:'About 10–50 µm.'},
+  {q:'What type of mill is used in micropulverization?', a:'High-speed attrition or impact mills.'},
+  {q:'What is another name for fluid energy grinding?', a:'Jet milling, or micronizing.'},
+  {q:'For which suspension types is fluid energy grinding especially used?', a:'Parenteral or ophthalmic suspensions.'},
+  {q:'Describe the basic mechanism of spray drying.', a:'A drug solution is sprayed into a cone-shaped apparatus and rapidly dried by a current of warm, dry air.'},
+  {q:'What is the ideal particle diameter range in most good pharmaceutical suspensions?', a:'1 to 50 µm.'},
+  {q:'What problem occurs if particle size is reduced too much?', a:'Fine particles tend to form a compact cake on settling that resists breakup on shaking.'},
+  {q:'Which shape of calcium carbonate particles produced more stable suspensions?', a:'Symmetrical, barrel-shaped particles.'},
+  {q:'Which shape of calcium carbonate particles formed a tenacious sediment cake?', a:'Asymmetrical, needle-shaped particles.'},
+  {q:'Define a floc or floccule.', a:'A loose aggregation of particles held together by comparatively weak particle-to-particle bonds.'},
+  {q:'What must be prevented to avoid formation of a hard cake?', a:'Agglomeration of the particles into larger crystals or masses.'},
+  {q:'Write the formula for the sedimentation volume ratio, F.', a:'F = Vf / Vo'},
+  {q:'What does Vo represent in the sedimentation volume ratio formula?', a:'The initial volume of suspension before settling.'},
+  {q:'What does Vf represent in the sedimentation volume ratio formula?', a:'The final volume of sediment.'},
+  {q:'What is the numerical range of F?', a:'0 to 1.'},
+  {q:'In a flocculated system, how are the particles arranged?', a:'In loose aggregates or floccules that behave as large, porous individual particles.'},
+  {q:'How quickly do floccules begin to sediment?', a:'Quickly, generally within a few minutes.'},
+  {q:'Describe the appearance of the sediment in a flocculated system.', a:'Loose and fluffy.'},
+  {q:'What is the typical maximum F value for a flocculated system?', a:'Up to about 0.6.'},
+  {q:'In a deflocculated system, how do the particles behave?', a:'Independently of one another.'},
+  {q:'How long does sedimentation typically take in a deflocculated system?', a:'Days to weeks.'},
+  {q:'Describe the appearance of the sediment in a deflocculated system.', a:'Dense and compacted, described as "caked".'},
+  {q:'What is the typical minimum F value for a deflocculated system?', a:'As low as about 0.1.'},
+  {q:'Name a clay commonly used as a flocculating agent in oral suspensions.', a:'Diluted bentonite magma.'},
+  {q:'How is flocculation typically induced in a parenteral suspension?', a:'By altering the pH of the preparation, generally toward the region of minimum drug solubility.'},
+  {q:'Name a class of chemical agents (besides clays) that act as flocculating agents.', a:'Electrolytes.'},
+  {q:'Name agents that can also induce flocculation at a carefully determined concentration.', a:'Nonionic and ionic surface-active agents (surfactants).'},
+  {q:'What is a major drawback of highly flocculated suspensions?', a:'The particles settle too rapidly, hindering accurate dosage measurement and producing an unsightly supernatant.'},
+  {q:'Name suspending/thickening agents added to lend structure to the dispersion medium.', a:'Carboxymethylcellulose (CMC), methylcellulose, microcrystalline cellulose, polyvinyl pyrrolidone, xanthan gum, and bentonite.'},
+  {q:'Define thixotropy.', a:'A property of highly flocculated preparations in which the preparation is semi-solid at rest but becomes fluid when shaken, resuming its structure after a few minutes of rest.'},
+  {q:'What behavior should a well-formulated thixotropic suspension exhibit?', a:'Stay fluid long enough for easy dose dispensing, then slowly regain its original viscosity within a short time.'},
+  {q:'What must a pharmacist understand before preparing a suspension?', a:'The characteristics of both the intended dispersed phase and the dispersion medium.'},
+  {q:'Name three common wetting agents used with aqueous vehicles.', a:'Alcohol, glycerin, and propylene glycol.'},
+  {q:'What equipment mixes wetting agents with particles on a large industrial scale?', a:'A colloid mill.'},
+  {q:'What equipment is used on a small pharmacy scale to mix wetting agents?', a:'A mortar and pestle.'},
+  {q:'Name two common preservatives used in suspensions.', a:'Methylparaben and propylparaben.'}
+];
+
+const flashcardsMedium = [
+  {q:'Why are some suspensions supplied as dry powders rather than ready-to-use liquids?', a:'Because many drugs are not sufficiently stable once dispersed in a liquid vehicle for long-term storage, so they are reconstituted with purified water shortly before use.'},
+  {q:'Why is the liquid dosage form often preferred by patients over the solid form of the same drug?', a:'Because liquids are easier to swallow and allow flexible administration of a range of doses.'},
+  {q:'Explain how administering a drug as an oral suspension can mask a disagreeable taste.', a:'Because the drug remains as undissolved particles rather than dissolving in solution, the taste-producing molecules are not fully exposed to the taste buds.'},
+  {q:'Why was erythromycin estolate specifically developed instead of using erythromycin base in a liquid product?', a:'Because it is a less water-soluble ester form of erythromycin, which allows a palatable liquid suspension dosage form to be made.'},
+  {q:'Why must a well-designed suspension pour readily and evenly, not just resist settling?', a:'Because even a suspension that settles slowly must still be dispensed accurately and conveniently from its container to ensure the correct dose is delivered.'},
+  {q:'Why is sedimentation a significant concern for the majority of pharmaceutical suspensions?', a:'Because most suspension particles have radii of approximately 0.5 µm or greater, which is the size range where gravitational sedimentation becomes significant.'},
+  {q:'Why does particle diameter have a greater effect on settling velocity than viscosity does, per Stokes\' equation?', a:'Because diameter appears as a squared term (d²) in the equation, while viscosity appears only to the first power in the denominator.'},
+  {q:'Why does halving particle diameter reduce settling velocity by a factor of four rather than two?', a:'Because diameter is squared in Stokes\' equation, so (½)² = ¼ of the original velocity.'},
+  {q:'What would Stokes\' equation predict if particle density equaled medium density?', a:'The term (ρs − ρf) would equal zero, so the predicted sedimentation velocity would be zero.'},
+  {q:'Why might a formulator choose micropulverization over fluid energy grinding for a topical suspension?', a:'Because micropulverization is rapid, convenient, and inexpensive, and produces particles (about 10–50 µm) already acceptable for most oral and topical suspensions, without the added cost of finer milling.'},
+  {q:'Why is fluid energy grinding preferred for parenteral suspensions rather than micropulverization?', a:'Because parenteral suspensions require finer particles, under 10 µm, which fluid energy grinding (jet milling/micronizing) can achieve more effectively.'},
+  {q:'Why does reducing particle size too far paradoxically worsen suspension stability?', a:'Because although smaller particles settle more slowly, very fine particles have a tendency to form a compact cake on settling that resists breakup with shaking.'},
+  {q:'Explain why needle-shaped particles cake more than barrel-shaped particles of the same drug.', a:'Needle-shaped (asymmetrical) particles form a tenacious sediment that cannot be redistributed, whereas symmetrical barrel-shaped particles do not cake upon standing, producing a more stable suspension.'},
+  {q:'Why is intentional flocculation used to prevent hard caking, rather than relying only on very fine particles?', a:'Because flocculation forms a loose lattice of weakly bonded particles that resists complete, rigid settling, avoiding the tight packing that causes caking in fine, unflocculated particles.'},
+  {q:'Why do flocs settle faster than individual fine particles yet still avoid forming a hard cake?', a:'Flocs behave as large, porous units, so they settle quickly, but their loose internal structure keeps solvent incorporated within them, allowing the sediment to break up and redisperse easily.'},
+  {q:'Why does a flocculated suspension typically show a higher sedimentation volume ratio (F) than a deflocculated one?', a:'Because the flocs settle to form a bulky, loosely packed sediment that retains solvent medium, occupying more volume than the dense, tightly packed sediment of deflocculated particles.'},
+  {q:'Why does a deflocculated suspension initially show little or no clear supernatant?', a:'Because in the early stages only a small amount of compact sediment forms at the base while the rest of the particles remain dispersed slowly throughout the liquid.'},
+  {q:'Why is redispersion of a caked, deflocculated sediment so difficult compared with a flocculated one?', a:'Because little or no solvent medium can penetrate into the dense, compacted cake, whereas a flocculated sediment retains solvent within its loose structure.'},
+  {q:'Why does bentonite magma serve a dual role in an oral suspension?', a:'It acts as the flocculating agent, and its clay structure also helps physically support the floc once it has formed.'},
+  {q:'Explain the mechanism by which electrolytes cause flocculation.', a:'They reduce the electrical barrier between suspensoid particles and form a bridge that links the particles together.'},
+  {q:'Why does altering pH toward the region of minimum drug solubility promote flocculation in a parenteral suspension?', a:'Near minimum solubility the dispersed drug particles are more prone to associate with one another, producing a floc of the dispersed phase.'},
+  {q:'Why is a highly flocculated suspension considered pharmaceutically inelegant despite being easy to redisperse?', a:'Because the particles settle too rapidly, which hinders accurate measurement of dosage and produces an unsightly supernatant layer.'},
+  {q:'Why are suspending agents like CMC or xanthan gum added even in a flocculated system?', a:'They thicken the dispersion medium and help suspend the suspensoid, giving the vehicle enough structure to slow settling further and improve product elegance.'},
+  {q:'Explain the practical purpose of thixotropy in an oral suspension.', a:'It allows the preparation to be semi-solid (viscous) during storage, preventing settling, but to become fluid on shaking so the dose can be poured and measured easily.'},
+  {q:'Why must a thixotropic suspension regain its viscosity "within a short time" rather than instantly or never?', a:'If it regained viscosity instantly it could not be poured/measured; if it never regained viscosity, particles would settle rapidly again before the container was closed and stored.'},
+  {q:'Why must a pharmacist consider the dispersion medium\'s characteristics, not just the drug\'s, before preparing a suspension?', a:'Because how well the vehicle wets and penetrates the drug particles determines whether the powder disperses properly or clumps/floats instead.'},
+  {q:'Why do some drug powders float on the vehicle instead of dispersing, and how is this addressed?', a:'They are not penetrated easily by the vehicle, so the powder must first be wetted to make it more penetrable by the dispersion medium.'},
+  {q:'Explain the mechanism by which wetting agents act at the particle surface.', a:'They displace air trapped in the crevices of the particles, disperse the particles, and allow the dispersion medium to penetrate into the powder, increasing particle–vehicle interaction.'},
+  {q:'Why are soluble components like colorants, flavorants, and preservatives dissolved into the dispersion medium before it is added to the wetted powder?', a:'So that the soluble formulation components are already fully and uniformly incorporated into the vehicle before it contacts and blends with the suspended solid.'},
+  {q:'What is the purpose of the final rinse portion of vehicle in suspension manufacturing?', a:'It washes the mixing equipment free of suspensoid and is used to bring the suspension to its final volume, ensuring the correct concentration of solid matter.'},
+  {q:'Why is a preservative particularly necessary in an aqueous suspension?', a:'Aqueous suspensions are susceptible to bacterial and mold contamination, so suitable preservatives (e.g., methylparaben and propylparaben) must be included whenever appropriate.'},
+  {q:'In the aluminum hydroxide suspension formula, why are both syrup and sorbitol solution included?', a:'Together they provide the desired viscosity and sweetness of the finished product.'},
+  {q:'Why can neither speed of sedimentation nor reversibility alone determine the "ideal" suspension?', a:'A slow sedimentation rate favors a deflocculated system, but reproducible dosing requires reversibility, which favors a flocculated system — so a balance between the two opposing factors must be struck.'},
+  {q:'Why does a deflocculated system with minimal sedimentation require greater viscosity and density adjustments?', a:'Because without flocculation the particles do not form a supportive loose network, so the vehicle itself must be made more viscous and density-matched to keep particles from settling.'},
+  {q:'What specific risk arises if a highly viscous deflocculated suspension is exposed to prolonged high temperature?', a:'Changes to the particulate dispersion pattern may cause the particles to coagulate irreversibly, resulting in catastrophic failure of the product.'},
+  {q:'Why does a flocculated system with controlled slow sedimentation require fewer viscosity and density adjustments than a deflocculated system?', a:'Because the floc network itself provides structural support and easy redispersion on shaking, reducing the need for the vehicle to carry that role.'},
+  {q:'Why is "permanency of the preparation" listed as a feature separate from "chemical stability"?', a:'Chemical stability refers to the drug not degrading, while permanency also concerns the preparation retaining its physical form, uniformity, and appearance over its shelf life.'},
+  {q:'Why does Stokes\' equation assume particles are spherical?', a:'Because the equation was derived for spherical particles, so the diameter term (d) is only strictly valid when particle shape is spherical or treated as such.'},
+  {q:'If a suspension\'s particles have a radius well below 0.5 µm, what would you predict about their settling behavior?', a:'They would settle very little under gravity, since significant sedimentation is observed mainly for particles with radii of approximately 0.5 µm or greater.'},
+  {q:'Explain, from Stokes\' equation, why increasing medium viscosity slows sedimentation.', a:'Viscosity (η) is in the denominator, so as η increases, the calculated sedimentation velocity V decreases proportionally.'},
+  {q:'Why might a formulator deliberately keep particle size within 1–50 µm rather than making particles as small as technically possible?', a:'Because this range is described as producing most good pharmaceutical suspensions, balancing acceptable settling behavior against the caking risk of excessively fine particles.'},
+  {q:'What would likely happen to redispersibility if particles became extremely fine and uniform without flocculation?', a:'They would tend to form a compact, resistant cake on settling, since fine, unflocculated particles have this tendency according to the text.'},
+  {q:'Why is the sedimentation volume ratio a useful quality-control parameter?', a:'Because measuring Vf relative to Vo at set time intervals gives a standardized, numerical (0–1) way to compare the settling and redispersion behavior of different suspension formulations.'},
+  {q:'Why is reconstitution used for some drugs (like amoxicillin oral suspension) instead of supplying a ready-made liquid?', a:'Because the drug is more stable as a dry powder mixture and is only distributed into the liquid vehicle shortly before the patient begins using it.'},
+  {q:'Why does using undissolved particles avoid exposing the drug\'s bad taste, specifically?', a:'Because the disagreeable taste is a property of the dissolved drug in solution, and administering it as undissolved particles avoids this fully-dissolved solution state in the mouth.'},
+  {q:'What functional difference distinguishes a flocculating agent from a suspending (thickening) agent?', a:'A flocculating agent (e.g., bentonite magma, electrolytes, surfactants) causes particles to aggregate loosely into flocs, while a suspending agent (e.g., CMC, xanthan gum) thickens the vehicle itself to slow settling.'},
+  {q:'Why is the dispersion medium added to the wetted powder gradually, in portions, rather than all at once?', a:'So the mixture can be thoroughly blended at each step, ensuring uniform dispersion before more vehicle dilutes the mixture further.'},
+  {q:'Why is "aesthetic appeal" considered important specifically for suspensions?', a:'Because visible defects such as caking or an unsightly supernatant layer are unique failure modes of suspensions that directly affect patient confidence and correct dosing.'},
+  {q:'Why might jet milling/micronizing be more demanding than micropulverization?', a:'Because it must achieve much finer particles (under 10 µm) for sensitive routes like parenteral or ophthalmic use, requiring more specialized, high-energy equipment.'},
+  {q:'Why is a clear supernatant layer expected eventually in both flocculated and deflocculated systems, despite very different timelines?', a:'Both systems will eventually separate solid from liquid under gravity; a flocculated system does this within minutes to days, while a deflocculated system takes days to weeks.'}
+];
+
+const flashcardsHard = [
+  {q:'Using Stokes\' law, if particle diameter is tripled with all else constant, by what factor does sedimentation velocity change?', a:'By a factor of 9, since d is squared in Stokes\' equation (3² = 9), so tripling the diameter multiplies the settling velocity ninefold.'},
+  {q:'A suspension shows Vo = 100 mL and Vf = 55 mL after standing. Calculate F and classify the system.', a:'F = 55/100 = 0.55, close to the upper flocculated range (up to about 0.6), so this behaves as a flocculated system with a bulky, readily redispersible sediment.'},
+  {q:'A suspension shows Vo = 50 mL and Vf = 4 mL. Calculate F and classify the system.', a:'F = 4/50 = 0.08, near the deflocculated minimum of about 0.1, indicating a dense, caked sediment that will be difficult to redisperse.'},
+  {q:'Explain why reducing particle diameter and increasing medium viscosity are the two safest formulation levers for controlling sedimentation, compared with manipulating density.', a:'Diameter and viscosity can be adjusted directly through processing (milling) and excipients (thickeners) without altering the drug\'s inherent density or risking solubility/stability changes, whereas manipulating particle or vehicle density is harder to control and may affect other product properties.'},
+  {q:'A formulator increases the density of the dispersed particles without changing the vehicle. Predict and justify the effect on sedimentation.', a:'Sedimentation velocity increases, because the greater the density of the particles relative to an unaltered vehicle density, the greater the rate of descent, per Stokes\' equation and the text\'s explicit statement.'},
+  {q:'Two formulations use identical particle diameter but different shapes (barrel vs. needle). Which is more likely to fail a redispersibility test, and why?', a:'The needle-shaped formulation, because asymmetrical needle particles form a tenacious, non-redistributable sediment cake, whereas symmetrical barrel-shaped particles do not cake upon standing.'},
+  {q:'Explain the paradox that decreasing particle size is stabilizing per Stokes\' law but can become destabilizing via caking, and how flocculation resolves it.', a:'Smaller particles settle more slowly per Stokes\' law, but below a certain size they tend to pack into a resistant cake; flocculation resolves this by holding particles in a loose, weakly bonded lattice that settles as porous units, keeping the sediment easily redispersible rather than densely packed.'},
+  {q:'Contrast the interparticle bonding basis of caking in a deflocculated system with the lattice of a flocculated system.', a:'In a deflocculated system, fine independent particles pack tightly with little bonding structure, producing a dense, hard-to-penetrate cake; in a flocculated system, comparatively weak particle-to-particle bonds hold particles in a loose, solvent-permeated lattice that resists complete, rigid settling.'},
+  {q:'For a drug prone to degradation during shipping in hot climates, should a formulator choose a deflocculated system with added viscosity modifiers or a controlled-flocculation system? Justify.', a:'A controlled-flocculation system is generally preferable, because a highly viscous deflocculated system risks irreversible particle coagulation and catastrophic failure if the dispersion pattern changes under prolonged heat, whereas a flocculated system requires fewer viscosity/density adjustments and redisperses reliably on shaking.'},
+  {q:'Explain why reversibility, not merely slowness, of sedimentation is the more clinically important criterion for dosing accuracy.', a:'A slowly settling deflocculated suspension can still cake irreversibly over time, making the last doses inaccurate or unusable, whereas a flocculated system, even though it settles faster, redisperses readily and reproducibly on gentle shaking, preserving dosing accuracy throughout use.'},
+  {q:'Describe the full mechanistic cycle of a thixotropic suspension from rest through shaking and back to rest.', a:'At rest the flocculated network is intact and the preparation is semi-solid; shaking breaks the weak particle-to-particle bonds, making it fluid; immediately after shaking it remains fluid long enough to be poured and dosed; over the next few minutes of standing the weak bonds reform and the original semi-solid structure is restored.'},
+  {q:'Predict what happens to F for a deflocculated suspension that is later flocculated by adding an electrolyte.', a:'F would increase, because flocculation produces a bulkier, more loosely packed, higher-volume sediment (up to about 0.6) compared with the dense, low-volume sediment (as low as about 0.1) typical of the deflocculated state.'},
+  {q:'Explain mechanistically how an electrolyte induces flocculation, linking it to the electrical barrier between particles.', a:'The electrolyte reduces the electrical barrier that normally keeps suspensoid particles apart and instead forms a bridge that links particles together, allowing them to associate into loose flocs.'},
+  {q:'Why is pH adjusted toward the region of minimum drug solubility to flocculate a parenteral suspension?', a:'Near minimum solubility the drug is least likely to redissolve and the reduced solvation of particle surfaces favors particle-particle association into flocs, producing controlled flocculation of the dispersed phase.'},
+  {q:'Explain both functional roles of bentonite magma in an oral suspension, and why an inert thickener like xanthan gum could not fully substitute for it.', a:'Bentonite magma acts as the flocculating agent, causing particles to aggregate, and its clay structure also physically supports the resulting floc; xanthan gum only thickens the vehicle and does not itself induce the same flocculating/particle-bridging action.'},
+  {q:'Do a wetting agent and a suspending agent act on the same phase of the system? Explain.', a:'No — a wetting agent (e.g., glycerin) acts at the solid particle surface, displacing air and allowing vehicle penetration into the powder, while a suspending agent (e.g., CMC) acts on the liquid vehicle itself, thickening it to help suspend the suspensoid.'},
+  {q:'What would go wrong if the manufacturing order were reversed — adding dispersion medium before wetting the powder?', a:'Without prior wetting, the powder (if not naturally wetted by the vehicle) would clump together or float rather than disperse, since air trapped in the particle crevices would not be displaced, preventing proper penetration of the vehicle into the powder.'},
+  {q:'In the aluminum hydroxide suspension formula, classify each excipient by functional role.', a:'Aluminum hydroxide compressed gel is the active/suspensoid; sorbitol solution and syrup provide viscosity and sweetness; glycerin can serve as a wetting/humectant agent; methylparaben and propylparaben are preservatives; purified water is the bulk of the aqueous vehicle.'},
+  {q:'A suspension is too viscous to pour accurately, so viscosity is reduced, but now it sediments quickly and cakes irreversibly. Diagnose the error and propose a fix.', a:'The formulator likely converted an unstructured deflocculated system by simply cutting viscosity without addressing particle-particle bonding; the fix is to introduce controlled flocculation (e.g., an electrolyte or clay) so the reduced-viscosity vehicle still yields a loose, easily redispersible sediment instead of a dense cake.'},
+  {q:'Why is the ideal sedimentation pattern framed as "a balance between opposing factors" rather than a universal recommendation?', a:'A slow settling rate favors a deflocculated system for pharmaceutical elegance, but that system risks irreversible caking or coagulation and needs heavy viscosity/density adjustment; a flocculated system redisperses reliably and needs fewer adjustments, but if too flocculated it settles too fast and looks unsightly — so formulators must weigh these trade-offs for each product.'},
+  {q:'Using at least two reasons from the text, justify why a suspension is the rational oral dosage form for a chemically unstable drug given to children.', a:'First, certain drugs are chemically unstable in solution but stable when suspended, addressing the stability problem; second, the liquid form is easier for patients (including children who cannot swallow tablets) to take and allows flexible dose administration.'},
+  {q:'Are "irreversible coagulation" under thermal stress and simple "caking" of fine unflocculated particles the same mechanism?', a:'They are related but distinct: caking arises from fine particles compacting during ordinary settling, while irreversible coagulation is described as occurring when the particulate dispersion pattern changes under a stress like prolonged heat, permanently disrupting the formulation\'s structure rather than merely settling densely.'},
+  {q:'Why are particle size reduction methods route-dependent (jet milling for parenteral/ophthalmic vs micropulverization for oral/topical)?', a:'Parenteral and ophthalmic suspensions require much finer, more uniform particles (under 10 µm) to avoid irritation and to be handled safely by fine needles or sensitive tissue, which fluid energy grinding achieves, while the coarser 10–50 µm range from micropulverization is acceptable for oral and topical use.'},
+  {q:'After micropulverization (10–50 µm), a suspension still cakes badly. Propose two independent strategies from the text to resolve this without further reducing particle size.', a:'Introduce controlled flocculation (e.g., using a clay, electrolyte, or pH adjustment) to form a loose, non-caking lattice, and/or add a suspending agent (e.g., CMC, xanthan gum) to thicken the dispersion medium and structure the settling process.'},
+  {q:'Why is F alone insufficient to fully characterize suspension quality?', a:'F only quantifies the volume of sediment relative to the original suspension; it does not indicate whether that sediment is loose and easily redispersed (flocculated) or merely bulky due to poor wetting, so the ease of redispersion on shaking must also be assessed.'},
+  {q:'Describe the qualitative sediment-height-versus-time curve for a flocculated versus a deflocculated suspension.', a:'The flocculated system\'s sediment rises rapidly within minutes and plateaus near its maximum within hours to days; the deflocculated system\'s sediment starts very small, growing slowly over days to weeks as both sediment and clear supernatant volumes gradually increase.'},
+  {q:'Why do suspensions specifically require preservatives more than solid dosage forms?', a:'The aqueous dispersion medium provides a favorable environment for bacterial and mold growth, so preservatives such as methylparaben and propylparaben must be included whenever appropriate to protect the product throughout its shelf life.'},
+  {q:'A suspension needs to be flocculated but is intended for injection rather than oral use. Why is bentonite magma inappropriate here, and what should be used instead?', a:'Bentonite magma is a clay flocculating agent suited to oral suspensions; for a parenteral suspension, flocculation is instead achieved by altering the pH of the preparation toward the region of minimum drug solubility, which is safer and more appropriate for an injectable product.'},
+  {q:'Why is a flocculated system with controlled slow sedimentation not automatically the universal best choice?', a:'If flocculation is too aggressive (highly flocculated), the particles settle too rapidly, hindering accurate dosage measurement and producing an unsightly supernatant layer, so the degree of flocculation must be carefully controlled rather than maximized.'},
+  {q:'Derive the general velocity ratio from Stokes\' law for two particle diameters and apply it when d2 = 0.2 × d1.', a:'Since V ∝ d², V2/V1 = (d2/d1)² = (0.2)² = 0.04, so the particle with diameter 0.2×d1 settles at only 4% of the original velocity.'},
+  {q:'Why does the text treat chemical stability and physical stability (settling/caking) as separate desired features, and give an example where improving one could worsen the other?', a:'Chemical stability concerns the drug not degrading, while physical stability concerns particle behavior over time; for example, increasing vehicle viscosity to slow settling (physical stability) could, in some formulations, alter the microenvironment around the drug in ways that affect its chemical stability.'},
+  {q:'For particles just above the 0.5 µm threshold radius, is Brownian motion or gravitational sedimentation expected to dominate, and why does size matter here?', a:'Gravitational sedimentation is expected to dominate, since the text specifies that sedimentation becomes significant for particles with radii of approximately 0.5 µm or greater; below this size, random Brownian motion would be relatively more significant in keeping particles dispersed.'},
+  {q:'Why are "permanency of preparation" and "aesthetic appeal" treated as core quality features rather than cosmetic concerns?', a:'Because visible defects such as caking, discoloration, or an unsightly supernatant can lead patients to underdose, overdose, or discard a still-effective product, directly undermining therapeutic efficacy and adherence, not just appearance.'},
+  {q:'Explain the rationale for using the final portion of vehicle specifically to rinse the mixing equipment.', a:'It recovers any suspensoid left clinging to the mixing equipment and incorporates it into the final product, ensuring the suspension reaches its intended final volume at the correct, undiminished concentration of solid matter.'},
+  {q:'How can bentonite function as both a flocculating clay and a general suspending/thickening agent without contradiction?', a:'In an oral suspension it can be used at a concentration and manner that induces particle bridging (flocculation), while its clay structure also thickens the dispersion medium, so the same material can serve both roles depending on how and why it is incorporated.'},
+  {q:'Propose a rank-ordered troubleshooting plan for a deflocculated suspension that failed a 3-month redispersion test.', a:'First assess whether particle size was reduced too far and caused caking; second, consider introducing a controlled flocculating agent (clay, electrolyte, or pH adjustment) to convert the system toward flocculation; third, review and adjust viscosity/density of the vehicle to better support the particles if flocculation alone is insufficient.'},
+  {q:'Reconcile the conflict between fluid energy grinding achieving sub-10 µm particles ("finer is better for slow settling") and the caking principle ("too fine causes caking").', a:'Fluid energy grinding is used when very fine particles are specifically required (e.g., parenteral, ophthalmic), but per the text\'s caking principle this must be paired with a flocculating strategy so the very fine particles are held in a loose, redispersible lattice rather than packing into a resistant cake.'},
+  {q:'A suspension shows rapid caking, a small dense sediment, and an early clear supernatant. Which system (A or B) does this describe, and what follows for dosing?', a:'This describes system B, the deflocculated suspension, since it forms a small, compact, caked sediment; dosing accuracy will be compromised over time because this cake is difficult to redisperse with ordinary shaking.'},
+  {q:'Tie each manufacturing step (wetting, gradual dispersion medium addition, final rinse to volume) to a specific quality risk it mitigates.', a:'Wetting prevents clumping/floating that would cause uneven drug distribution; gradual, blended addition of dispersion medium prevents localized under- or over-concentration of the suspensoid; the final rinse-to-volume step prevents loss of suspensoid on equipment surfaces and ensures the labeled concentration is accurately achieved.'},
+  {q:'Critically evaluate: "A flocculated suspension is always preferable to a deflocculated suspension." Use at least three facts from the text to argue this is an oversimplification.', a:'First, a highly flocculated suspension can settle too rapidly, hindering accurate dosing and looking unsightly; second, a well-designed deflocculated system with appropriate viscosity/density adjustments can show minimal sedimentation; third, the text explicitly frames the choice as "a balance between opposing factors" rather than declaring one system universally superior.'}
+];
+
+/* ===================== QUIZ BANK (3 difficulty levels) ===================== */
+const quizEasy = [
+  {q:'A pharmaceutical suspension contains finely divided drug particles known as the:', correct:'Suspensoid', wrong:['Emulsoid','Colloid base','Eutectic phase']},
+  {q:'Suspensions may be supplied in which two general forms?', correct:'Ready-to-use liquid or dry powder for reconstitution', wrong:['Tablet or capsule only','Aerosol or gel only','Injection or infusion only']},
+  {q:'Carafate Suspension is an example of a commercial suspension containing which drug?', correct:'Sucralfate', wrong:['Amoxicillin','Erythromycin estolate','Aluminum hydroxide']},
+  {q:'Amoxicillin for Oral Suspension is reconstituted with:', correct:'Purified water', wrong:['Glycerin only','Propylene glycol only','Mineral oil']},
+  {q:'One stated reason for preparing a suspension is that certain drugs are:', correct:'Chemically unstable in solution but stable when suspended', wrong:['Only active when fully dissolved','Impossible to formulate as solids','Only stable at very high pH']},
+  {q:'Liquid dosage forms are often preferred by patients mainly because of:', correct:'Ease of swallowing and flexibility of dosing', wrong:['Lower manufacturing cost','Longer shelf life than tablets','Requirement for refrigeration']},
+  {q:'A disagreeable drug taste in solution can be overcome by:', correct:'Administering the drug as undissolved particles in suspension', wrong:['Increasing the drug concentration','Adding more preservative','Heating the solution before use']},
+  {q:'Erythromycin estolate is used to prepare a palatable suspension because it is:', correct:'A less water-soluble ester form of erythromycin', wrong:['A more water-soluble salt of erythromycin','Chemically identical to erythromycin base','A synthetic replacement for erythromycin']},
+  {q:'Which of the following is NOT listed as a desired feature of a pharmaceutical suspension?', correct:'Extremely rapid, irreversible settling', wrong:['Slow settling with easy redispersion','Aesthetic appeal','Pours readily and evenly']},
+  {q:'Sedimentation is defined as:', correct:'The downward movement of particles under gravity', wrong:['The upward movement of particles due to buoyancy','The dissolution of particles in the vehicle','The chemical degradation of the drug']},
+  {q:'Sedimentation is observed for particles with radii of approximately:', correct:'0.5 µm or greater', wrong:['0.005 µm or greater','50 µm or greater','500 µm or greater']},
+  {q:'In Stokes\' equation, V represents:', correct:'The sedimentation velocity', wrong:['The viscosity of the vehicle','The volume of the container','The density of the drug']},
+  {q:'In Stokes\' equation, d represents:', correct:'The particle diameter', wrong:['The density difference','The dielectric constant','The container diameter']},
+  {q:'In Stokes\' equation, η represents:', correct:'The viscosity of the medium', wrong:['The particle diameter','The acceleration due to gravity','The sedimentation volume ratio']},
+  {q:'ρs and ρf in Stokes\' equation stand for:', correct:'Density of the particles and density of the medium', wrong:['Radius of the particle and radius of the flask','Rate of settling and rate of flow','Ratio of solubility and ratio of flocculation']},
+  {q:'A decrease in particle size by a factor of 10 reduces the settling rate by a factor of:', correct:'100', wrong:['10','1,000','2']},
+  {q:'If particle density increases while vehicle density stays constant, the rate of sedimentation:', correct:'Increases', wrong:['Decreases','Remains exactly unchanged','Becomes zero']},
+  {q:'Which method uses high-speed attrition or impact mills to reduce particle size?', correct:'Micropulverization', wrong:['Spray drying','Fluid energy grinding','Freeze drying']},
+  {q:'Micropulverization typically produces particles of about:', correct:'10–50 µm', wrong:['0.001–0.01 µm','100–500 µm','500–1,000 µm']},
+  {q:'Fluid energy grinding is also called:', correct:'Jet milling or micronizing', wrong:['Colloid milling','Spray drying','Ball milling']},
+  {q:'Fluid energy grinding is especially suited to particles intended for:', correct:'Parenteral or ophthalmic suspensions', wrong:['Topical creams only','Oral tablets only','Suppositories only']},
+  {q:'Spray drying dries a sprayed drug solution using:', correct:'A current of warm, dry air', wrong:['Liquid nitrogen','High-pressure steam','Ultraviolet light']},
+  {q:'In most good pharmaceutical suspensions, the particle diameter is typically:', correct:'1 to 50 µm', wrong:['0.001 to 0.01 µm','100 to 500 µm','500 to 1,000 µm']},
+  {q:'Reducing particle size too much tends to cause:', correct:'Formation of a compact cake that resists breakup on shaking', wrong:['Complete dissolution of the drug','Loss of all preservative activity','Immediate discoloration of the vehicle']},
+  {q:'Symmetrical, barrel-shaped calcium carbonate particles produced suspensions that were:', correct:'More stable than needle-shaped particles', wrong:['Less stable than needle-shaped particles','Identical in stability to needle-shaped particles','Impossible to redisperse at all']},
+  {q:'Needle-shaped calcium carbonate particles formed a sediment that was:', correct:'Tenacious and could not be redistributed', wrong:['Instantly redispersible','Fully dissolved on standing','Unaffected by particle shape']},
+  {q:'A floc or floccule is:', correct:'A loose aggregation of particles held by weak particle-to-particle bonds', wrong:['A fully dissolved drug molecule','A rigid crystalline mass','A type of preservative']},
+  {q:'To avoid cake formation, it is necessary to prevent:', correct:'Agglomeration of particles into larger crystals or masses', wrong:['Any wetting of the powder','Any use of preservatives','Any addition of flavoring agents']},
+  {q:'The sedimentation volume ratio F is calculated as:', correct:'Vf divided by Vo', wrong:['Vo divided by Vf','Vf multiplied by Vo','Vf minus Vo']},
+  {q:'Vo in the sedimentation volume ratio formula represents:', correct:'The initial volume of suspension before settling', wrong:['The final volume of sediment','The volume of preservative added','The volume of the container']},
+  {q:'The sedimentation volume ratio F falls within the range:', correct:'0 to 1', wrong:['1 to 10','−1 to 1','0 to 100']},
+  {q:'In a flocculated system, particles are arranged as:', correct:'Loose aggregates or floccules', wrong:['Perfectly dissolved molecules','Rigid single crystals','Gas bubbles']},
+  {q:'Floccules in a flocculated system begin to sediment:', correct:'Quickly, generally within a few minutes', wrong:['Only after several months','Instantly and completely within seconds','Never, under any condition']},
+  {q:'The sediment of a flocculated system is described as:', correct:'Loose and fluffy', wrong:['Dense and permanently caked','Completely liquid','Chemically altered']},
+  {q:'A flocculated system\'s F value can be as high as:', correct:'0.6', wrong:['0.1','1.5','0.01']},
+  {q:'In a deflocculated system, particles behave:', correct:'Independently of one another', wrong:['As large aggregated flocs','Identically to a true solution','As rising gas bubbles']},
+  {q:'Sedimentation in a deflocculated system is typically measured in:', correct:'Days to weeks', wrong:['Seconds','Minutes only','Milliseconds']},
+  {q:'The sediment of a deflocculated system is described as:', correct:'Dense, compacted, and "caked"', wrong:['Loose and fluffy','Nonexistent','Thixotropic only']},
+  {q:'A deflocculated system\'s F value can be as low as:', correct:'0.1', wrong:['0.6','1.0','0.9']},
+  {q:'A clay commonly used as a flocculating agent in oral suspensions is:', correct:'Diluted bentonite magma', wrong:['Talc','Titanium dioxide','Kaolin exclusively']},
+  {q:'In parenteral suspensions, flocculation is frequently induced by:', correct:'Altering the pH toward minimum drug solubility', wrong:['Adding large amounts of sugar','Freezing the preparation','Raising the temperature only']},
+  {q:'Electrolytes act as flocculating agents mainly by:', correct:'Reducing the electrical barrier between particles and bridging them', wrong:['Dissolving the particles completely','Increasing particle solubility permanently','Acting only as preservatives']},
+  {q:'Which agents, at a carefully determined concentration, can also induce flocculation?', correct:'Nonionic and ionic surfactants', wrong:['Antioxidants only','Flavoring agents only','Coloring agents only']},
+  {q:'A major drawback of a highly flocculated suspension is that it:', correct:'Settles too rapidly, hindering accurate dosing', wrong:['Never settles at all','Cannot be preserved','Dissolves completely']},
+  {q:'Which of these is an example of a suspending/thickening agent?', correct:'Carboxymethylcellulose (CMC)', wrong:['Methylparaben','Propylene glycol','Erythromycin estolate']},
+  {q:'Thixotropy describes a preparation that is:', correct:'Semi-solid at rest but fluid when shaken', wrong:['Always liquid regardless of shaking','Always solid regardless of shaking','Unstable at any temperature']},
+  {q:'A well-formulated thixotropic suspension should remain fluid long enough to:', correct:'Allow easy dispensing of a dose', wrong:['Prevent any dosing at all','Permanently lose its viscosity','Cause immediate caking']},
+  {q:'Before preparing a suspension, a pharmacist must understand the characteristics of:', correct:'Both the dispersed phase and the dispersion medium', wrong:['Only the final container','Only the flavoring agent','Only the preservative system']},
+  {q:'Powders not easily penetrated by the vehicle tend to:', correct:'Clump together or float on the vehicle', wrong:['Dissolve instantly','Sink and dissolve completely','Turn into a gel spontaneously']},
+  {q:'Which of these is commonly used as a wetting agent for an aqueous vehicle?', correct:'Glycerin', wrong:['Methylparaben','Xanthan gum','Aluminum hydroxide']},
+  {q:'Wetting agents function mainly by:', correct:'Displacing air in particle crevices and aiding vehicle penetration', wrong:['Killing bacteria and mold','Increasing the drug\'s melting point','Reducing F to zero']},
+  {q:'On a large industrial scale, wetting agents are mixed with particles using a:', correct:'Colloid mill', wrong:['Mortar and pestle only','Spray dryer exclusively','Graduated cylinder']},
+  {q:'On a small pharmacy scale, wetting agents are typically mixed using a:', correct:'Mortar and pestle', wrong:['Colloid mill','Jet mill','Autoclave']},
+  {q:'Before being added to the wetted powder, the dispersion medium usually already contains:', correct:'Dissolved colorants, flavorants, and preservatives', wrong:['Only water and nothing else','Undissolved drug particles','Only the wetting agent']},
+  {q:'The final portion of vehicle added during suspension preparation is used to:', correct:'Rinse equipment and bring the suspension to final volume', wrong:['Increase drug concentration beyond label claim','Remove the preservative','Change the pH only']},
+  {q:'Which two preservatives are named as examples for suspensions?', correct:'Methylparaben and propylparaben', wrong:['Bentonite and xanthan gum','Alcohol and glycerin','Sorbitol and syrup']},
+  {q:'In the example aluminum hydroxide suspension formula, viscosity and sweetness come from:', correct:'Syrup and sorbitol solution', wrong:['Methylparaben and propylparaben','Purified water alone','Aluminum hydroxide gel alone']},
+  {q:'What is the main active ingredient in the example antacid suspension formula?', correct:'Aluminum hydroxide compressed gel', wrong:['Erythromycin estolate','Amoxicillin trihydrate','Calcium carbonate']},
+  {q:'In the antacid formula, how much aluminum hydroxide compressed gel is used per 1,000 mL?', correct:'326.8 g', wrong:['93.0 g','25.0 g','0.9 g']},
+  {q:'In the antacid formula, how much glycerin is included per 1,000 mL?', correct:'25.0 mL', wrong:['282.0 mL','93.0 mL','0.3 mL']}
+];
+
+const quizMedium = [
+  {q:'Why is sedimentation significant for the vast majority of pharmaceutical suspensions?', correct:'Because most suspension particles fall within the size range (≥ ~0.5 µm radius) where gravitational settling occurs', wrong:['Because all suspensions are stored at high temperature','Because all suspended drugs are highly water-soluble','Because preservatives promote particle settling']},
+  {q:'According to Stokes\' equation, doubling particle diameter (all else constant) changes settling velocity by a factor of:', correct:'4', wrong:['2','8','16']},
+  {q:'If particle density equals medium density in Stokes\' equation, the predicted sedimentation velocity is:', correct:'Zero', wrong:['Maximum possible','Negative, causing particles to rise','Unrelated to density']},
+  {q:'Fluid energy grinding is generally chosen over micropulverization when the suspension is intended for:', correct:'Parenteral or ophthalmic use requiring particles under 10 µm', wrong:['Oral use only, where 10–50 µm is fine','Topical use only','Any use where cost must be minimized']},
+  {q:'The main reason reducing particle size too far can worsen suspension stability is:', correct:'Very fine particles tend to form a compact, hard-to-break cake on settling', wrong:['Very fine particles dissolve completely and disappear','Very fine particles become chemically unstable','Very fine particles always float instead of settling']},
+  {q:'Needle-shaped particles cake more than barrel-shaped particles of the same drug mainly because:', correct:'Their asymmetrical shape favors tight, tenacious packing on settling', wrong:['They are always larger in size','They dissolve faster in the vehicle','They repel each other electrically more strongly']},
+  {q:'Flocculation is used as a strategy against hard caking because it:', correct:'Creates a loose lattice of weakly bonded particles that resists complete rigid settling', wrong:['Fully dissolves the suspended particles','Permanently bonds particles into a solid mass','Removes the need for any preservative']},
+  {q:'Flocs settle faster than individual fine particles mainly because:', correct:'They behave as large, porous aggregated units', wrong:['They are chemically different from the original drug','They lose mass during settling','They repel the vehicle molecules']},
+  {q:'A flocculated suspension typically shows a higher F value than a deflocculated one because:', correct:'The loose floc sediment retains more solvent and occupies more volume', wrong:['The flocculated sediment is denser than the deflocculated sediment','F measures drug concentration, not sediment volume','Flocculated systems never fully settle']},
+  {q:'In the early stages of settling, a deflocculated suspension typically shows:', correct:'A small amount of compact sediment with little or no clear supernatant', wrong:['A large volume of loose, fluffy sediment immediately','Complete separation into two clear layers within minutes','No sediment at all, ever']},
+  {q:'Redispersion of a caked, deflocculated sediment is difficult mainly because:', correct:'Little or no solvent can penetrate the dense, compacted cake', wrong:['The drug has fully dissolved into the vehicle','Preservatives bind the particles chemically','The container shape prevents shaking']},
+  {q:'Bentonite magma serves a dual purpose in an oral suspension by acting as:', correct:'Both the flocculating agent and a structural support for the floc', wrong:['Only a preservative and nothing else','Only a coloring agent and nothing else','Only a wetting agent and nothing else']},
+  {q:'Electrolytes promote flocculation chiefly by:', correct:'Reducing the electrical barrier between particles and bridging them together', wrong:['Increasing the pH to extreme alkalinity','Coating particles with an insoluble oil film','Dissolving the suspensoid completely']},
+  {q:'Altering pH toward the region of minimum drug solubility promotes flocculation in a parenteral suspension because:', correct:'Particles are more likely to associate with one another near minimum solubility', wrong:['The drug becomes fully soluble at that pH','The vehicle viscosity drops to zero at that pH','Preservative activity is destroyed at that pH']},
+  {q:'A highly flocculated suspension is considered pharmaceutically inelegant mainly because:', correct:'Particles settle too rapidly, producing an unsightly supernatant and inaccurate dosing', wrong:['It cannot be preserved against microbial growth','It is always more expensive to manufacture','It cannot include any flavoring agents']},
+  {q:'Suspending agents such as CMC or xanthan gum are added to commercial suspensions primarily to:', correct:'Thicken the dispersion medium and help suspend the suspensoid', wrong:['Act as the primary active drug','Replace the need for any preservative','Dissolve the suspensoid completely']},
+  {q:'The practical benefit of thixotropy in an oral suspension is that it:', correct:'Stays semi-solid in storage but becomes fluid enough to dose easily when shaken', wrong:['Prevents the suspension from ever being poured','Makes the suspension permanently liquid','Eliminates the need for any suspending agent']},
+  {q:'A pharmacist must evaluate the dispersion medium\'s characteristics, not just the drug\'s, mainly because:', correct:'Vehicle-particle wetting determines whether the powder disperses or clumps/floats', wrong:['The dispersion medium alone determines the drug\'s potency','The dispersion medium is always more expensive than the drug','Only the dispersion medium requires a preservative']},
+  {q:'Wetting agents such as glycerin function primarily by:', correct:'Displacing air from particle crevices and allowing vehicle penetration', wrong:['Chemically bonding to and neutralizing the drug','Acting as the main preservative system','Permanently dissolving the suspensoid']},
+  {q:'Soluble components like colorants and preservatives are dissolved into the dispersion medium before it meets the wetted powder in order to:', correct:'Ensure uniform incorporation into the vehicle before it blends with the solid', wrong:['Prevent the drug from ever dissolving','Avoid using any wetting agent at all','Increase the sedimentation volume ratio artificially']},
+  {q:'The final rinse portion of vehicle in suspension manufacturing chiefly serves to:', correct:'Recover residual suspensoid from equipment and reach the correct final volume', wrong:['Add extra preservative beyond the formula','Remove all flavoring from the batch','Increase the suspension\'s viscosity artificially']},
+  {q:'Preservatives such as methylparaben and propylparaben are included in suspensions mainly to guard against:', correct:'Bacterial and mold contamination', wrong:['Sedimentation and caking','Chemical oxidation of the vehicle only','Loss of flavor over time only']},
+  {q:'In the aluminum hydroxide antacid formula, syrup and sorbitol solution together provide:', correct:'Viscosity and sweetness', wrong:['Preservation against microbial growth','The suspension\'s active pharmacologic effect','Wetting of the powder only']},
+  {q:'The "balance between opposing factors" in choosing a sedimentation pattern refers mainly to weighing:', correct:'Speed of sedimentation against reversibility of the sediment', wrong:['Cost of manufacturing against flavor quality','Container size against label design','Drug potency against tablet hardness']},
+  {q:'A deflocculated system with minimal sedimentation typically requires:', correct:'Greater viscosity and density adjustments to maintain dispersion', wrong:['No adjustments at all, since particles never settle','Only a color change to the formulation','Removal of all preservatives']},
+  {q:'A key risk of a highly viscous deflocculated suspension exposed to prolonged heat is:', correct:'Irreversible coagulation of particles, causing product failure', wrong:['Spontaneous conversion into a solid tablet','Complete loss of preservative taste only','Instant evaporation of the vehicle']},
+  {q:'A flocculated system with controlled slow sedimentation needs fewer viscosity/density adjustments than a deflocculated one because:', correct:'The floc network itself provides structure and easy redispersion', wrong:['It contains no water at all','It never requires any preservative','It is always thixotropic by definition']},
+  {q:'"Permanency of the preparation" as a desired suspension feature refers to:', correct:'The preparation retaining its physical form and appearance over shelf life', wrong:['The drug never being metabolized in the body','The container never being opened','The suspension having unlimited potency forever']},
+  {q:'Stokes\' equation assumes the particle is:', correct:'Spherical', wrong:['Needle-shaped','Cubic','Irregular and undefined']},
+  {q:'A suspension with particles well below the 0.5 µm sedimentation threshold would be expected to:', correct:'Settle very little under gravity', wrong:['Settle extremely rapidly under gravity','Immediately form a hard cake','Dissolve fully and disappear']},
+  {q:'Per Stokes\' equation, increasing the viscosity of the dispersion medium will:', correct:'Decrease the sedimentation velocity', wrong:['Increase the sedimentation velocity proportionally','Have no effect on sedimentation velocity','Reverse the direction of settling']},
+  {q:'A rationale for keeping particle size within about 1–50 µm, rather than as small as possible, is that:', correct:'This range balances acceptable settling against the caking risk of overly fine particles', wrong:['Particles below 1 µm cannot be manufactured at all','Particles above 50 µm dissolve too quickly','This range eliminates the need for any preservative']},
+  {q:'Extremely fine, uniform, unflocculated particles would most likely:', correct:'Tend to form a compact, resistant cake on settling', wrong:['Remain permanently and perfectly dispersed forever','Immediately dissolve into true solution','Convert spontaneously into a flocculated system']},
+  {q:'The sedimentation volume ratio F is useful mainly because it provides:', correct:'A standardized, numerical way to compare settling/redispersion behavior across formulations', wrong:['A direct measurement of the drug\'s potency','A measurement of the vehicle\'s exact pH','A way to calculate the exact preservative concentration']},
+  {q:'Reconstitution (as with amoxicillin oral suspension) is used instead of a ready-made liquid mainly because:', correct:'The drug is more stable as a dry powder until shortly before use', wrong:['Dry powders are always cheaper to transport','Liquids cannot legally be sold to patients','Reconstitution improves the drug\'s taste chemically']},
+  {q:'Undissolved particles mask a disagreeable taste because:', correct:'The taste-producing molecules are not fully exposed in the fully dissolved state', wrong:['Undissolved particles have no chemical taste-related properties at all','Taste receptors cannot detect solids of any kind','Undissolved particles are always coated with flavor']},
+  {q:'The key functional difference between a flocculating agent and a suspending agent is that a flocculating agent:', correct:'Causes particles to aggregate loosely, while a suspending agent thickens the vehicle', wrong:['Always dissolves the drug, while a suspending agent never does','Is always a preservative, while a suspending agent is always a flavorant','Has no effect on sedimentation at all']},
+  {q:'Dispersion medium is added to wetted powder gradually, in portions, mainly to:', correct:'Allow thorough blending and uniform dispersion at each addition', wrong:['Save time during large-scale manufacturing only','Avoid using any preservative in the batch','Prevent the need for a colloid mill entirely']},
+  {q:'"Aesthetic appeal" matters specifically for suspensions because:', correct:'Visible caking or an unsightly supernatant can directly affect patient confidence and dosing', wrong:['Suspensions are the only dosage form ever seen by patients','Aesthetic appeal has no link to therapeutic outcomes','Only injectable suspensions require aesthetic appeal']},
+  {q:'Jet milling/micronizing may be more demanding than micropulverization mainly because it:', correct:'Must achieve much finer particles for sensitive routes like parenteral/ophthalmic use', wrong:['Cannot be used for any pharmaceutical suspension','Always produces particles larger than 50 µm','Is required for all oral suspensions by regulation']},
+  {q:'Both flocculated and deflocculated systems eventually show a clear supernatant because:', correct:'Both systems separate solid from liquid under gravity, just on very different timelines', wrong:['Only flocculated systems ever show a supernatant','Only deflocculated systems ever show a supernatant','Clear supernatant only appears if a preservative fails']},
+  {q:'A key reason liquid suspensions are considered easier to dose than solids for some patients is:', correct:'They allow flexible administration of a range of doses', wrong:['They are always cheaper than tablets','They never require shaking before use','They eliminate the need for any measuring device']},
+  {q:'The reason micropulverization is described as "rapid, convenient, and inexpensive" is best explained by:', correct:'It uses simple high-speed attrition/impact milling suitable for most oral and topical needs', wrong:['It always achieves sub-micron particle sizes','It requires no equipment at all','It replaces the need for any preservative']},
+  {q:'The main reason electrolytes and clays are both described as "flocculating agents" is that both:', correct:'Promote loose particle-to-particle association into flocs', wrong:['Are both used exclusively as preservatives','Are both used exclusively as flavoring agents','Both fully dissolve the suspensoid']},
+  {q:'The statement that a flocculated sediment "incorporates the solvent medium" mainly explains why it:', correct:'Redisperses easily and shows a higher sedimentation volume ratio', wrong:['Cannot be redispersed under any circumstances','Chemically reacts with the preservative','Always evaporates faster than a deflocculated sediment']},
+  {q:'A deflocculated system\'s sediment increases gradually over time along with:', correct:'The volume of clear supernatant', wrong:['The total drug potency of the batch','The preservative concentration','The particle diameter of individual particles']},
+  {q:'Choosing between a deflocculated and flocculated approach ultimately depends on balancing:', correct:'Desired slow settling against the need for reliable, reversible redispersion', wrong:['Only the cost of the container','Only the color of the final product','Only the flavor preference of the patient']},
+  {q:'A suspension formulated with too little flocculation and too little suspending-agent viscosity would most likely show:', correct:'Rapid, dense, hard-to-redisperse sedimentation', wrong:['Perfectly permanent, uniform dispersion with no settling at all','Immediate full dissolution of the drug','Spontaneous conversion to a solid tablet']},
+  {q:'The purpose of including both a flocculating agent and a suspending agent in one formulation is to:', correct:'Combine loose particle aggregation with vehicle thickening for better overall stability', wrong:['Cancel out each other\'s effects entirely','Replace the need for any preservative','Guarantee the suspension never needs shaking']},
+  {q:'The key trade-off a formulator accepts when selecting a highly viscous deflocculated system is:', correct:'Slower settling in exchange for a real risk of irreversible coagulation if conditions change', wrong:['Faster settling in exchange for guaranteed chemical stability','No trade-off at all, since this approach has no drawbacks','Lower cost in exchange for reduced therapeutic efficacy']}
+];
+
+const quizHard = [
+  {q:'If particle diameter is tripled with all else constant in Stokes\' equation, sedimentation velocity increases by a factor of:', correct:'9', wrong:['3','6','27']},
+  {q:'A suspension has Vo = 100 mL and Vf = 55 mL. Based on F, this system is best classified as:', correct:'Flocculated, since F ≈ 0.55 is near the flocculated maximum of about 0.6', wrong:['Deflocculated, since F should approach 1.0 for stability','Neither, since F cannot exceed 0.1 in valid suspensions','Unstable, since F should always equal exactly 0.5']},
+  {q:'A suspension has Vo = 50 mL and Vf = 4 mL. This F value of 0.08 suggests:', correct:'A deflocculated system with a dense, difficult-to-redisperse sediment', wrong:['A flocculated system with excellent redispersibility','An error in measurement, since F cannot be below 0.1','A thixotropic system regardless of flocculation state']},
+  {q:'Compared with manipulating particle or vehicle density, adjusting particle diameter and medium viscosity is generally preferred because:', correct:'These can be controlled directly via processing/excipients without altering drug density or stability', wrong:['Density can never be measured accurately in suspensions','Diameter and viscosity have no effect on Stokes\' equation','Density changes always violate pharmacopeial standards']},
+  {q:'Increasing particle density while keeping vehicle density constant will, per the text, cause sedimentation velocity to:', correct:'Increase', wrong:['Decrease','Stay exactly the same','Become undefined']},
+  {q:'Between otherwise identical barrel-shaped and needle-shaped particle formulations, which is more likely to fail a long-term redispersibility test?', correct:'The needle-shaped formulation, due to tenacious cake formation', wrong:['The barrel-shaped formulation, due to excessive porosity','Both fail equally, since shape does not affect caking','Neither fails, since caking is unrelated to particle shape']},
+  {q:'The apparent paradox that smaller particles settle more slowly (Stokes\' law) yet can cake more severely is resolved by:', correct:'Using flocculation to keep particles in a loose, redispersible lattice rather than a dense pack', wrong:['Always making particles as large as possible instead','Removing all viscosity-modifying agents from the formula','Eliminating gravity effects using thixotropic agents alone']},
+  {q:'Compared with a deflocculated cake, the flocculated lattice resists complete settling mainly because it is held together by:', correct:'Comparatively weak particle-to-particle bonds forming a porous structure', wrong:['Strong covalent bonds between particles','Complete chemical fusion of particles','Permanent crystalline bridging identical to caking']},
+  {q:'For a heat-labile drug shipped in hot climates, which suspension strategy is generally preferable per the text\'s logic?', correct:'A controlled-flocculation system, since it needs fewer adjustments and avoids irreversible coagulation risk', wrong:['A highly viscous deflocculated system, since it never risks coagulation','A highly flocculated system, since faster settling is always safer','Neither approach matters, since heat has no effect on suspensions']},
+  {q:'Reversibility of sedimentation is more clinically important than mere slowness because:', correct:'A slowly settling system can still cake irreversibly, compromising later doses', wrong:['Reversibility has no bearing on dosing accuracy','Slow settling always guarantees perfect redispersion','Fast settling always improves dosing accuracy']},
+  {q:'During the thixotropic cycle, shaking a suspension primarily causes:', correct:'Breaking of the weak particle-to-particle bonds in the floc network, making it fluid', wrong:['Permanent dissolution of the suspensoid','Irreversible destruction of the vehicle','Formation of new covalent bonds between particles']},
+  {q:'If a deflocculated suspension is subsequently flocculated by adding an electrolyte, F is expected to:', correct:'Increase, reflecting a bulkier, more loosely packed sediment', wrong:['Decrease, reflecting a denser sediment','Remain exactly unchanged','Become undefined or negative']},
+  {q:'Electrolyte-induced flocculation works mechanistically by:', correct:'Reducing the electrical barrier between particles and bridging them together', wrong:['Permanently dissolving the suspensoid in the electrolyte','Freezing the particles into a rigid crystal lattice','Coating particles with an insoluble polymer film']},
+  {q:'Adjusting pH toward minimum drug solubility promotes flocculation in a parenteral suspension because, at that pH:', correct:'Particles are more likely to associate into flocs rather than remain independently dispersed', wrong:['The drug becomes maximally soluble and dissolves completely','The vehicle\'s viscosity increases to infinity','All preservative activity is destroyed instantly']},
+  {q:'A formulator cannot simply substitute xanthan gum for bentonite magma in a flocculated oral suspension because:', correct:'Xanthan gum thickens the vehicle but does not itself induce the same particle-bridging flocculation', wrong:['Xanthan gum is chemically identical to bentonite magma','Xanthan gum cannot legally be used in any suspension','Bentonite magma has no thickening properties at all']},
+  {q:'A wetting agent and a suspending agent differ in that the wetting agent primarily acts on:', correct:'The solid particle surface, while the suspending agent thickens the liquid vehicle', wrong:['The liquid vehicle only, while the suspending agent acts on the particle surface','Neither acts on the particle or the vehicle','Both act identically on the preservative system only']},
+  {q:'If dispersion medium were added before the powder was wetted, the most likely problem would be:', correct:'The powder clumping together or floating instead of dispersing properly', wrong:['The drug degrading instantly upon contact with any liquid','The preservative losing all activity','The vehicle becoming permanently thixotropic']},
+  {q:'In the aluminum hydroxide antacid formula, glycerin most plausibly serves as a:', correct:'Wetting/humectant agent aiding particle-vehicle interaction', wrong:['The sole active pharmaceutical ingredient','A flocculating clay','A preservative replacing methylparaben']},
+  {q:'A formulator who reduces viscosity to fix a pouring problem but then observes rapid, irreversible caking has most likely failed to:', correct:'Introduce or maintain controlled flocculation to keep the reduced-viscosity system redispersible', wrong:['Add enough flavoring agent to the formula','Increase the drug concentration sufficiently','Switch to a smaller container size']},
+  {q:'The text frames the ideal sedimentation pattern as a "balance" because:', correct:'Both deflocculated and flocculated extremes carry distinct drawbacks that must be weighed against each other', wrong:['Only flocculated systems have any drawbacks at all','Only deflocculated systems have any drawbacks at all','There is no meaningful drawback to either extreme']},
+  {q:'For a chemically unstable drug that must be given orally to children, the suspension dosage form is rational because it addresses:', correct:'Both chemical instability in solution and the need for easy, flexible liquid dosing', wrong:['Only cost concerns, unrelated to stability or dosing','Only regulatory requirements, unrelated to the drug\'s chemistry','Neither stability nor dosing, only flavor']},
+  {q:'Irreversible coagulation under thermal stress differs from ordinary caking in that coagulation:', correct:'Results from a stress-induced change in the particulate dispersion pattern itself, not just ordinary settling', wrong:['Is identical in mechanism and cause to ordinary caking','Only happens in flocculated, never deflocculated, systems','Cannot occur in any properly preserved suspension']},
+  {q:'Jet milling is favored for parenteral/ophthalmic suspensions over micropulverization mainly because parenteral/ophthalmic use demands:', correct:'Much finer, more uniform particles (under 10 µm) for safety and comfort', wrong:['Larger particles for easier visual inspection','No particle size control at all','The cheapest possible processing method regardless of size']},
+  {q:'If a suspension micropulverized to 10–50 µm still cakes badly, two independent remedies suggested by the text\'s principles are:', correct:'Introduce controlled flocculation and/or add a suspending (thickening) agent', wrong:['Increase particle size well beyond 50 µm and remove all preservatives','Switch to a non-aqueous, anhydrous vehicle exclusively','Eliminate the wetting step entirely']},
+  {q:'F alone is an incomplete quality measure because it does not indicate:', correct:'Whether the sediment is loose and easily redispersed or simply bulky from poor wetting', wrong:['The exact pH of the final formulation','The exact preservative concentration used','The exact flavor profile of the product']},
+  {q:'On a sediment-height-versus-time plot, a flocculated system is expected to show sediment volume that:', correct:'Rises rapidly within minutes and plateaus within hours to days', wrong:['Rises extremely slowly over weeks before plateauing','Never plateaus and continues rising indefinitely','Falls to zero immediately after mixing']},
+  {q:'Preservatives are especially critical in suspensions (versus solids) because the aqueous vehicle:', correct:'Provides a favorable environment for bacterial and mold growth', wrong:['Chemically destroys the drug without a preservative','Cannot be flavored without a preservative present','Always requires refrigeration regardless of preservative use']},
+  {q:'For a parenteral suspension needing flocculation, the more appropriate strategy from the text (versus bentonite magma) is:', correct:'Altering pH toward the region of minimum drug solubility', wrong:['Adding diluted bentonite magma directly to the injectable vehicle','Adding large amounts of dietary sugar','Freezing the suspension before administration']},
+  {q:'A flocculated system with controlled slow sedimentation is not automatically the universal best choice because, if flocculation is excessive, the suspension may:', correct:'Settle too rapidly and produce an unsightly, dosing-inaccurate supernatant', wrong:['Become permanently insoluble and untreatable','Lose all preservative effectiveness immediately','Convert spontaneously into a solid dosage form']},
+  {q:'Using V ∝ d², if a second particle\'s diameter is 0.2 times the first particle\'s diameter, its settling velocity relative to the first is:', correct:'0.04 times (4%) of the original', wrong:['0.2 times (20%) of the original','0.4 times (40%) of the original','Equal to the original']},
+  {q:'Chemical stability and physical stability are treated as distinct suspension features because:', correct:'One concerns drug degradation, the other concerns particle settling/caking behavior over time', wrong:['They are actually the same property described twice','Physical stability is irrelevant to any liquid dosage form','Chemical stability only matters for solid dosage forms']},
+  {q:'For particles with radii just above the 0.5 µm threshold, the dominant particle-movement mechanism is expected to be:', correct:'Gravitational sedimentation', wrong:['Brownian motion exclusively','Electrostatic repulsion exclusively','Osmotic diffusion exclusively']},
+  {q:'"Permanency" and "aesthetic appeal" are treated as core quality features, not mere cosmetics, because they directly affect:', correct:'Patient confidence, correct dosing, and continued therapeutic efficacy', wrong:['Only the marketing department\'s preferences','Only the manufacturing cost of the batch','Nothing measurable about the drug\'s performance']},
+  {q:'The rationale for using the final vehicle portion to rinse mixing equipment is chiefly to ensure:', correct:'No suspensoid is lost and the final concentration/volume is accurate', wrong:['The equipment is sterilized for the next unrelated batch','The preservative concentration is deliberately doubled','The flavor is intensified beyond the original formula']},
+  {q:'Bentonite can serve as both a flocculating clay and a general suspending/thickening agent because:', correct:'Its structure can promote particle bridging in one context and thicken the vehicle in another', wrong:['It is chemically converted into a different substance between uses','It only ever functions as a preservative','It has no thickening properties under any condition']},
+  {q:'For a deflocculated suspension failing a 3-month redispersion test, the most logical first troubleshooting step (per the text\'s principles) is to check whether:', correct:'Particle size was reduced too far, promoting cake formation', wrong:['The label color matches the cap color','The container was manufactured from glass or plastic','The flavor was appropriately selected for the age group']},
+  {q:'The apparent conflict between jet milling (finer particles settle more slowly) and the caking principle (finer particles cake more) is reconciled by:', correct:'Pairing very fine particles with a flocculating strategy so they remain loosely, not densely, packed', wrong:['Never using jet milling for any pharmaceutical suspension','Ignoring the caking principle for parenteral products only','Always avoiding flocculation whenever particles are very fine']},
+  {q:'A suspension showing rapid caking, an early clear supernatant, and a small dense sediment is best matched to which system, with what dosing implication?', correct:'A deflocculated system, with a risk of inaccurate dosing due to difficult redispersion', wrong:['A flocculated system, with guaranteed accurate dosing at all times','A thixotropic-only system, with no risk of dosing error','An emulsified system, unrelated to suspension behavior']},
+  {q:'Tying manufacturing steps to specific risks, gradual/portioned blending of the dispersion medium chiefly guards against:', correct:'Localized under- or over-concentration of suspensoid within the batch', wrong:['Any possibility of microbial contamination','Loss of the container\'s label print','Excessive foaming of the final product']},
+  {q:'The claim "a flocculated suspension is always preferable to a deflocculated suspension" is an oversimplification chiefly because:', correct:'Highly flocculated systems can settle too fast and look unsightly, and the text frames the choice as a balance, not a universal rule', wrong:['Deflocculated suspensions are always illegal to manufacture','Flocculated suspensions can never be preserved against microbial growth','There is no such thing as a deflocculated suspension in practice']}
+];
+
+/* ===================== RENDER LOGIC: FLASH CARDS ===================== */
+const flashcardSets = { easy: flashcardsEasy, medium: flashcardsMedium, hard: flashcardsHard };
+let currentFcLevel = 'easy';
+const fcGrid = document.getElementById('fc-grid');
+
+function renderFlashcards(level){
+  currentFcLevel = level;
+  const cards = flashcardSets[level];
+  document.getElementById('fc-count').textContent = cards.length + ' cards';
+  fcGrid.innerHTML = '';
+  cards.forEach((card, i)=>{
+    const el = document.createElement('div');
+    el.className = 'fc-card';
+    el.innerHTML = `
+      <div class="fc-inner">
+        <div class="fc-face fc-front"><span class="tagno">#${i+1}</span>${card.q}</div>
+        <div class="fc-face fc-back"><span><strong>A —</strong> ${card.a}</span></div>
+      </div>`;
+    el.addEventListener('click', ()=> el.classList.toggle('flipped'));
+    fcGrid.appendChild(el);
+  });
+}
+document.querySelectorAll('.fc-level-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.fc-level-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    renderFlashcards(btn.dataset.level);
+  });
+});
+document.getElementById('fc-reset').addEventListener('click', ()=>{
+  document.querySelectorAll('.fc-card').forEach(c=>c.classList.remove('flipped'));
+});
+renderFlashcards('easy');
+
+/* ===================== RENDER LOGIC: QUIZ BANK ===================== */
+const quizSets = { easy: quizEasy, medium: quizMedium, hard: quizHard };
+let currentQuizLevel = 'easy';
+let score = 0;
+let answered = 0;
+
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+
+function updateScore(){
+  document.getElementById('quiz-score').textContent = `Score: ${score} / ${answered}`;
+}
+
+function renderQuiz(){
+  score = 0; answered = 0; updateScore();
+  const list = document.getElementById('quiz-list');
+  list.innerHTML = '';
+  const quizQuestions = quizSets[currentQuizLevel];
+  quizQuestions.forEach((item, idx)=>{
+    const options = shuffle([item.correct, ...item.wrong]);
+    const box = document.createElement('div');
+    box.className = 'quiz-item';
+    box.innerHTML = `<div class="qtext"><span class="qnum">Q${idx+1}</span>${item.q}</div>`;
+    options.forEach(opt=>{
+      const b = document.createElement('button');
+      b.className = 'opt-btn';
+      b.textContent = opt;
+      b.addEventListener('click', ()=>{
+        const buttons = box.querySelectorAll('.opt-btn');
+        buttons.forEach(x=>x.disabled = true);
+        answered++;
+        if(opt === item.correct){
+          b.classList.add('correct');
+          score++;
+        } else {
+          b.classList.add('wrong');
+          buttons.forEach(x=>{ if(x.textContent === item.correct) x.classList.add('correct'); });
+        }
+        updateScore();
+      });
+      box.appendChild(b);
+    });
+    list.appendChild(box);
+  });
+}
+document.querySelectorAll('.quiz-level-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.quiz-level-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    currentQuizLevel = btn.dataset.level;
+    renderQuiz();
+  });
+});
+document.getElementById('quiz-reset').addEventListener('click', renderQuiz);
+renderQuiz();
+</script>
+</body>
+</html>
